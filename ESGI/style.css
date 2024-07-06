@@ -35,4 +35,13 @@ main h1 {
   color: var(--main-color);
 }
 
+footer {
+  font-family: "Mulish", sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.220625rem;
+  font-weight: 400;
+  color: var(--white);
+  background-color: var(--main-color);
+}
+
 /*# sourceMappingURL=style.css.map */

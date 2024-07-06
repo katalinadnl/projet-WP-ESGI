@@ -1,1 +1,6 @@
 //styles for footer
+footer {
+    @include p15;
+    color: var(--white);
+    background-color: var(--main-color);
+}
