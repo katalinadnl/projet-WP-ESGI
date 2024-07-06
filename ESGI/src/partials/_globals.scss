@@ -1,0 +1,40 @@
+//for H & bacgrounds - main color
+//for text - grey
+
+
+:root {
+	--main-color: rgba(5, 10, 58, 1);
+	--white: #fff;
+	--black: #000;
+	--grey: rgba(138, 138, 138, 1);
+    --accent: linear-gradient(95deg, #FFD0A8 12.9%, #FF4FC0 89.67%);
+
+	--bg-color: var(--white);
+	--text-color: var(--grey);
+}
+
+body {
+	font-family: $font;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	&.dark {
+		--bg-color: var(--black);
+		--text-color: var(--white);
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+svg {
+	path {
+		fill: currentColor;
+	}
+	&:hover {
+		path {
+			fill: var(--main-color);
+		}
+	}
+}
