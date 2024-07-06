@@ -20,26 +20,19 @@
   --text-color: var(--grey);
 }
 
-body {
-  font-family: "Mulish", sans-serif;
+main {
   background-color: var(--bg-color);
-  color: var(--text-color);
+  font-family: "Mulish", sans-serif;
+  font-size: 1.625rem;
+  line-height: 2.625rem;
+  font-weight: 400;
 }
-body.dark {
-  --bg-color: var(--black);
-  --text-color: var(--white);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-svg path {
-  fill: currentColor;
-}
-svg:hover path {
-  fill: var(--main-color);
+main h1 {
+  font-family: "Mulish", sans-serif;
+  font-size: 5.25rem;
+  line-height: 6.58875rem;
+  font-weight: 600;
+  color: var(--main-color);
 }
 
 /*# sourceMappingURL=style.css.map */

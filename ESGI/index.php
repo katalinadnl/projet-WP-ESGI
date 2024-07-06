@@ -1,6 +1,5 @@
 <main>
-<h1>ESGI</h1>
-<p>coucou</p>
+<?php //nothing to see here ?>
 </main>
 
 

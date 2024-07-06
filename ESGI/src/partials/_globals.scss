@@ -13,28 +13,11 @@
 	--text-color: var(--grey);
 }
 
-body {
-	font-family: $font;
-	background-color: var(--bg-color);
-	color: var(--text-color);
-	&.dark {
-		--bg-color: var(--black);
-		--text-color: var(--white);
-	}
-}
-
-img {
-	max-width: 100%;
-	height: auto;
-}
-
-svg {
-	path {
-		fill: currentColor;
-	}
-	&:hover {
-		path {
-			fill: var(--main-color);
-		}
-	}
+main {
+    background-color: var(--bg-color);
+    @include p26;
+    h1{
+        @include heading1;
+        color: var(--main-color)
+    }
 }
