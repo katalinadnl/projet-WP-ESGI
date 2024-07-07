@@ -3,4 +3,31 @@ footer {
     @include p15;
     color: var(--white);
     background-color: var(--main-color);
+    height: rem(397);
+
+    .container {
+        margin: 0 rem(159);
+        .container-footer, .container-footer-footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .container-footer {
+            padding-top: rem(70);
+            .contact-footer {
+                @include flexbox(row, nowrap, center, center, rem(25));
+            }
+        }
+        .container-footer-footer {
+            .rs {
+                ul {
+                    @include resetList;
+                    @include flexbox(row, nowrap, center, center, rem(25));
+                    a {
+                        @include resetLink;
+                    }
+                }
+            }
+        }
+    }
 }
