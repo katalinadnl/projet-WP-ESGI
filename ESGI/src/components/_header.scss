@@ -1,1 +1,10 @@
-//styles for navbar
+header {
+  .container {
+    margin: rem(48) rem(159);
+    .container-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
