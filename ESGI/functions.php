@@ -127,3 +127,43 @@ function esgi_customize_register($wp_customize)
         'description' => __('Black is beautiful.'),
     ]);
 }
+
+// Ajout de la section partners
+add_action('customize_register', 'esgi_customize_register_partners');
+function esgi_customize_register_partners($wp_customize)
+{
+    // section partners
+    $wp_customize->add_section('esgi_partners', array(
+        'title' => __('Partenaires', 'esgi'),
+        'description' => __('Personnaliser les partenaires', 'esgi'),
+        'priority' => 1,
+    ));
+
+    $num_partners = 6; // nombre de partenaires
+
+    for ($i = 1; $i <= $num_partners; $i++) {
+        // Ajout du parametre logo partner
+        $wp_customize->add_setting('esgi_partners_logo_' . $i, array(
+            'default' => get_template_directory_uri() . '/assets/images/svg/partner-' . $i . '.png',
+            'description' => __('Logo du partenaire ' . $i, 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        // Ajour d'un controle logo partner
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'esgi_partners_logo_' . $i, array(
+            'label' => __('Logo du partenaire ' . $i, 'esgi'),
+            'section' => 'esgi_partners',
+            'settings' => 'esgi_partners_logo_' . $i,
+        )));
+    }
+}
+
+// Récupère les urls des logos des partenaires depuis les réglages du Customizer.
+function esgi_get_partners()
+{
+    $partners = array();
+    $num_partners = 6;
+    for ($i = 1; $i <= $num_partners; $i++) {
+        $partners['logo_' . $i] = get_theme_mod('esgi_partners_logo_' . $i);
+    }
+    return $partners;
+}
