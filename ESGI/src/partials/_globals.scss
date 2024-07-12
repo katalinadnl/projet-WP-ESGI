@@ -25,7 +25,12 @@ main {
         @include heading1;
         color: var(--main-color)
     }
+    input, textarea {
+        width: 100%;
+    }
 }
+
+
 
 @media (max-width: 768px) {
 

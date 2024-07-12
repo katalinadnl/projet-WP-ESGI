@@ -6,6 +6,11 @@ function esgi_enqueue_assets()
     wp_enqueue_style('main', get_stylesheet_uri());
 }
 
+add_action('admin_enqueue_scripts', 'esgi_enqueue_admin_styles');
+function esgi_enqueue_admin_styles() {
+    wp_enqueue_style('admin-styles', get_template_directory_uri() . '/admin-styles.css');
+}
+
 add_action('after_setup_theme', 'esgi_register_nav_menu');
 function esgi_register_nav_menu()
 {
@@ -284,4 +289,113 @@ function esgi_get_team()
         );
     }
     return $team;
+}
+
+add_action('add_meta_boxes', 'esgi_add_custom_meta_boxes');
+function esgi_add_custom_meta_boxes() {
+    add_meta_box(
+        'custom_section_meta_box', // Unique ID
+        'Custom Sections', // Box title
+        'custom_section_meta_box_html', // Content callback, must be of type callable
+        'page', // Post type
+        'side', // Context
+        'high' // Priority
+    );
+}
+
+function custom_section_meta_box_html($post) {
+    $information_title1 = get_post_meta($post->ID, '_information_title1', true);
+    $information_content1 = get_post_meta($post->ID, '_information_content1', true);
+    $information_title2 = get_post_meta($post->ID, '_information_title2', true);
+    $information_content2 = get_post_meta($post->ID, '_information_content2', true);
+    $information_title3 = get_post_meta($post->ID, '_information_title3', true);
+    $information_content3 = get_post_meta($post->ID, '_information_content3', true);
+
+
+    // Add nonce for security and authentication
+    wp_nonce_field('save_custom_meta_box_data', 'custom_meta_box_nonce');
+
+    ?>
+    <label for="information_title1"><?php _e('Information Title 1', 'textdomain'); ?></label>
+    <input type="text" id="information_title1" name="information_title1" value="<?php echo esc_attr($information_title1); ?>" />
+
+    <label for="information_content1"><?php _e('Information Content 1', 'textdomain'); ?></label>
+    <textarea id="information_content1" name="information_content1" rows="4" cols="50"><?php echo esc_textarea($information_content1); ?></textarea>
+
+    <label for="information_title2"><?php _e('Information Title 2', 'textdomain'); ?></label>
+    <input type="text" id="information_title2" name="information_title2" value="<?php echo esc_attr($information_title2); ?>" />
+
+    <label for="information_content2"><?php _e('Information Content 2', 'textdomain'); ?></label>
+    <textarea id="information_content2" name="information_content2" rows="4" cols="50"><?php echo esc_textarea($information_content2); ?></textarea>
+
+    <label for="information_title3"><?php _e('Information Title 3', 'textdomain'); ?></label>
+    <input type="text" id="information_title3" name="information_title3" value="<?php echo esc_attr($information_title3); ?>" />
+
+    <label for="information_content3"><?php _e('Information Content 3', 'textdomain'); ?></label>
+    <textarea id="information_content3" name="information_content3" rows="4" cols="50"><?php echo esc_textarea($information_content3); ?></textarea>
+    <?php
+}
+
+add_action('save_post', 'esgi_save_custom_meta_box_data');
+function esgi_save_custom_meta_box_data($post_id) {
+    // Check if our nonce is set.
+    if (!isset($_POST['custom_meta_box_nonce'])) {
+        return;
+    }
+    // Verify that the nonce is valid.
+    if (!wp_verify_nonce($_POST['custom_meta_box_nonce'], 'save_custom_meta_box_data')) {
+        return;
+    }
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    // Check the user's permissions.
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Save or update each field
+    if (array_key_exists('information_title1', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_title1',
+            sanitize_text_field($_POST['information_title1'])
+        );
+    }
+    if (array_key_exists('information_content1', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_content1',
+            sanitize_textarea_field($_POST['information_content1'])
+        );
+    }
+    if (array_key_exists('information_title2', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_title2',
+            sanitize_text_field($_POST['information_title2'])
+        );
+    }
+    if (array_key_exists('information_content2', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_content2',
+            sanitize_textarea_field($_POST['information_content2'])
+        );
+    }
+    if (array_key_exists('information_title3', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_title3',
+            sanitize_text_field($_POST['information_title3'])
+        );
+    }
+    if (array_key_exists('information_content3', $_POST)) {
+        update_post_meta(
+            $post_id,
+            '_information_content3',
+            sanitize_textarea_field($_POST['information_content3'])
+        );
+    }
 }

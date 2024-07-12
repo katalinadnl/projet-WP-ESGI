@@ -39,6 +39,9 @@ main h1 {
   font-weight: 600;
   color: var(--main-color);
 }
+main input, main textarea {
+  width: 100%;
+}
 
 @media (max-width: 1440px) {
   main {
@@ -154,6 +157,10 @@ footer .container .container-footer-footer .rs ul a {
   .team-section .team-members-container {
     gap: 24px;
   }
+}
+
+#custom_section_meta_box input, #custom_section_meta_box textarea {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
