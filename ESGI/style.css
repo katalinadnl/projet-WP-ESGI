@@ -439,6 +439,7 @@ body.error-404 header#main-header {
   background-color: var(--main-color);
 }
 #main-404 .page-404 .content-404 {
+  padding: 3rem 9.9375rem;
   color: var(--white);
 }
 #main-404 .page-404 .content-404 h1 {
