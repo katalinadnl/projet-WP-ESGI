@@ -17,7 +17,8 @@
 @import "components/_header.scss";
 @import "components/_footer.scss";
 
-@import "sections/team-members";
+@import "template-parts/team-members";
+@import "template-parts/custom-about-us";
 @import "sections/about-us";
 
 @import "views/_404.scss";
