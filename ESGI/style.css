@@ -25,7 +25,7 @@ body {
 }
 
 main {
-  padding: 158px;
+  padding: 3rem 9.9375rem;
   background-color: var(--bg-color);
   font-family: "Mulish", sans-serif;
   font-size: 1.625rem;
@@ -45,13 +45,65 @@ main h1 {
     padding: 120px;
   }
 }
-header .container {
-  margin: 3rem 9.9375rem;
-}
 header .container .container-header {
+  padding: 3rem 9.9375rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+header .container .container-header .menu .open-menu {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+}
+header .main-menu {
+  display: none;
+}
+header .main-menu.active {
+  display: block;
+}
+header .main-menu a {
+  color: white;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 0.3125rem;
+}
+header .main-menu a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0.3125rem;
+  left: 0;
+  bottom: 0;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+header .main-menu a:hover::after {
+  width: 100%;
+}
+header .main-menu ul {
+  list-style: none;
+}
+header .close-menu-button {
+  display: block;
+  cursor: pointer;
+}
+@media (min-width: 758px) {
+  header .main-menu.active a {
+    font-size: 1.875rem;
+  }
+}
+@media (min-width: 480px) {
+  header .main-menu.active a {
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 1440px) {
+  header .main-menu.active a {
+    font-size: 3.9375rem;
+  }
 }
 
 footer {
@@ -154,6 +206,20 @@ footer .container .container-footer-footer .rs ul a {
   .team-section .team-members-container {
     gap: 24px;
   }
+}
+
+body.error-404 header#main-header {
+  background-color: var(--main-color);
+}
+
+#main-404 {
+  background-color: var(--main-color);
+}
+#main-404 .page-404 .content-404 {
+  color: var(--white);
+}
+#main-404 .page-404 .content-404 h1 {
+  color: var(--white);
 }
 
 /*# sourceMappingURL=style.css.map */

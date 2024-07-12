@@ -1,0 +1,15 @@
+body.error-404 header#main-header {
+  background-color: var(--main-color);
+}
+
+#main-404 {
+  background-color: var(--main-color);
+  .page-404{
+    .content-404 {
+      color: var(--white);
+      h1 {
+        color: var(--white);
+      }
+    }
+  }
+}
