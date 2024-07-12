@@ -45,9 +45,6 @@ main h1 {
     padding: 120px;
   }
 }
-header .container {
-  margin: 3rem 9.9375rem;
-}
 header .container .container-header {
   padding: 3rem 9.9375rem;
   display: flex;

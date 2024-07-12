@@ -35,9 +35,9 @@
                 </div>
                 <nav class="main-menu" id="main-menu">
                     <?php
-                    if (has_nav_menu('primary-menu')) {
+                    if (has_nav_menu('primary_menu')) {
                         wp_nav_menu([
-                            'menu' => 'primary-menu',
+                            'menu' => 'primary_menu',
                             'container' => '',
                         ]);
                     }
