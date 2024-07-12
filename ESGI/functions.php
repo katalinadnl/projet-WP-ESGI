@@ -193,7 +193,7 @@ function esgi_customize_register_team($wp_customize)
         'priority' => 2,
     ));
 
-    $members = 4;
+    $members = 5; // number of team members
 
     for ($i = 1; $i <= $members; $i++) {
 
@@ -268,6 +268,7 @@ function esgi_customize_register_team($wp_customize)
             'type' => 'text',
         ));
     }
+
 }
 
 function esgi_get_team()
@@ -570,3 +571,59 @@ function esgi_custom_image_section_shortcode() {
     return ob_get_clean();
 }
 
+add_action('customize_register', 'esgi_customize_register_location');
+function esgi_customize_register_location($wp_customize)
+{
+    // section team members
+    $wp_customize->add_section('esgi_location', array(
+        'title' => __('Adresse', 'esgi'),
+        'description' => __('Ajouter l\'adresse de l\'entreprise', 'esgi'),
+        'priority' => 3,
+    ));
+
+
+        $wp_customize->add_control(new WP_Customize_Heading_Control($wp_customize, 'esgi_location_heading', array(
+            'label' => __('Adresse', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => array(),
+        )));
+
+        // Rue
+        $wp_customize->add_setting('esgi_location_street', array(
+            'description' => __('Rue ', 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_location_street', array(
+            'label' => __('Rue', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => 'esgi_location_street',
+            'type' => 'text',
+        ));
+
+
+        // Code Postal
+        $wp_customize->add_setting('esgi_location_code', array(
+            'description' => __('Code Postal ', 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_location_code', array(
+            'label' => __('Code Postal', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => 'esgi_location_code',
+            'type' => 'text',
+        ));
+
+
+}
+
+function esgi_get_location()
+{
+    $location = array();
+    $location[] = array(
+        'street' => get_theme_mod('esgi_location_street'),
+        'code' => get_theme_mod('esgi_location_code'),
+    );
+    return $location;
+}
