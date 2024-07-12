@@ -1,7 +1,10 @@
 .section-custom {
+    margin-top: 160px;
+    margin-bottom: 160px;
     display: flex;
     flex-direction: column;
     width: 75%;
+    gap: 80px;
 
     .about-us{
         display: flex;
@@ -41,8 +44,7 @@
         &.intro {
             width: 45%;
             display: block;
-            margin: 160px auto;
-
+            margin-left: 35%;
         }
 }
 

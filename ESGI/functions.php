@@ -513,3 +513,60 @@ function save_hp_about_us_title($post_id) {
         update_post_meta($post_id, '_hp_about_us_title', sanitize_text_field($_POST['hp_about_us_title']));
     }
 }
+
+add_shortcode('custom_image_section', 'esgi_custom_image_section_shortcode');
+function esgi_custom_image_section_shortcode() {
+    ob_start(); // Start output buffering
+
+    if (function_exists('get_field') && get_field('show_service_section')) {
+        $image_1 = get_field('image_1');
+        $image_2 = get_field('image_2');
+        $image_3 = get_field('image_3');
+        $text_box = get_field('text_box');
+        $text_box_position = get_field('text_box_position');
+        $title = get_field('service_section_title');
+
+        $images = [
+            1 => $image_1,
+            2 => $image_2,
+            3 => $image_3
+        ];
+
+        // Adjust the array to insert the text box in the correct position
+        $output = [];
+        for ($i = 1; $i <= 4; $i++) {
+            if ($i == $text_box_position) {
+                $output[] = ['type' => 'text', 'content' => $text_box];
+            } else {
+                $image_index = $i > $text_box_position ? $i - 1 : $i;
+                $output[] = ['type' => 'image', 'content' => $images[$image_index]];
+            }
+        }
+
+        ?>
+        <section class="services-section">
+            <?php if ($title) : ?>
+                <h2><?php echo esc_html($title); ?></h2>
+            <?php endif; ?>
+                <div class="custom-image-section">
+                    <?php foreach($output as $item): ?>
+                        <div class="image-box <?php echo $item['type'] == 'text' ? 'text-box' : ''; ?>">
+                            <?php if($item['type'] == 'text'): ?>
+                                <h4 class="text-content"><?php echo esc_html($item['content']); ?></h4>
+                            <?php else: ?>
+                                <img src="<?php echo esc_url($item['content']['url']); ?>" alt="<?php echo esc_attr($item['content']['alt']); ?>">
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                            <?php
+                        } else {
+                            echo '<p>Custom section not available or fields not set.</p>';
+                        }?>
+
+    </section>
+
+    <?php
+    return ob_get_clean();
+}
+

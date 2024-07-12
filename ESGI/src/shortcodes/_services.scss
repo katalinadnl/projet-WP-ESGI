@@ -1,0 +1,55 @@
+.services-section {
+    h2 {
+        @include heading2;
+        color: var(--main-color);
+        margin-left: 156px;
+    }
+
+    .custom-image-section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .image-box {
+            flex: 1 1 25%;
+            max-width: 25%;
+            height: auto;
+
+            &.text-box {
+                h4 {
+                    @include heading4;
+                    color: var(--main-color);
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: -2px; // Adjust the position to place the underline
+                        width: 100%;
+                        height: 5px; // Height of the underline
+                        background: var(--accent); // Custom underline color
+                    }
+                }
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    @media (max-width: 780px) {
+        .custom-image-section {
+            flex-direction: column;
+            .image-box {
+                flex: 1 1 auto;
+                max-width: none;
+            }
+        }
+    }
+}
