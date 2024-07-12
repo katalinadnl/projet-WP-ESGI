@@ -3,13 +3,11 @@
     <div class="partners-container">
         <?php
         $partners = esgi_get_partners();
-        foreach ($partners as $index => $partner) {
-            if ($partner['photo']) {
+        foreach ($partners as $index => $partner_url) {
+            if ($partner_url) {
                 ?>
-                <div class="team-◊">
-                    <?php if ($partner['photo']) { ?>
-                        <img src="<?php echo esc_url($partner['photo']); ?>">
-                    <?php } ?>
+                <div class="partner-logo">
+                    <img src="<?php echo esc_url($partner_url); ?>" alt="<?php echo esc_attr('Partner ' . $index); ?>">
                 </div>
                 <?php
             }

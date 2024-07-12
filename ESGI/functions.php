@@ -143,7 +143,7 @@ function esgi_customize_register_partners($wp_customize)
         $wp_customize->add_setting('esgi_partners_logo_' . $i, array(
             'default' => get_template_directory_uri() . '/assets/images/svg/partner-' . $i . '.svg',
             'description' => __('Logo du partenaire ' . $i, 'esgi'),
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => 'esc_url_raw',
         ));
         // Ajour d'un controle logo partner
         $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'esgi_partners_logo_' . $i, array(
@@ -164,6 +164,7 @@ function esgi_get_partners()
     }
     return $partners;
 }
+
 
 if (class_exists('WP_Customize_Control')) {
     class WP_Customize_Heading_Control extends WP_Customize_Control {

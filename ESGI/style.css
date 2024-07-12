@@ -151,6 +151,7 @@ header .main-menu a:hover::after {
 }
 header .main-menu ul {
   list-style: none;
+  text-align: right;
 }
 header .close-menu-button {
   display: block;
@@ -500,31 +501,43 @@ footer .container .container-footer-footer .rs ul a {
     width: 90%;
   }
 }
-.about-us h1 {
+.partners-section {
+  margin: 78px 156px 234px 156px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.partners-section h2 {
   font-family: "Mulish", sans-serif;
-  font-size: 5.25rem;
-  line-height: 6.58875rem;
+  font-size: 3.9375rem;
+  line-height: 4.941875rem;
+  letter-spacing: 0.1875rem;
   font-weight: 600;
   color: var(--main-color);
-  margin-left: 160px;
 }
 @media (max-width: 1440px) {
-  .about-us h1 {
-    font-size: 4.5rem;
-    line-height: 5.625rem;
+  .partners-section h2 {
+    font-size: 3.375rem;
+    line-height: 4.224375rem;
   }
 }
 @media (max-width: 768px) {
-  .about-us h1 {
-    font-size: 3.75rem;
-    line-height: 4.6875rem;
+  .partners-section h2 {
+    font-size: 2.8125rem;
+    line-height: 3.515625rem;
   }
 }
 @media (max-width: 480px) {
-  .about-us h1 {
-    font-size: 3rem;
-    line-height: 3.75rem;
+  .partners-section h2 {
+    font-size: 2.25rem;
+    line-height: 2.8125rem;
   }
+}
+.partners-section .partners-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 body.error-404 header#main-header {

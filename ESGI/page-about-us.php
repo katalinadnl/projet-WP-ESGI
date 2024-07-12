@@ -16,6 +16,7 @@
 
     <?php get_template_part('template-parts/custom-about-us'); ?>
     <?php get_template_part('template-parts/team-members'); ?>
+    <?php get_template_part('template-parts/partners'); ?>
 
 </main>
 <?php get_footer(); ?>

@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php
+/*Template Name: Front Page */
+get_header(); ?>
 
 <main>
 
@@ -12,13 +14,8 @@
         } ?>
     </div>
 
-    <?php
-    if (have_posts()) :
-        while (have_posts()) : the_post();
-            the_content();
-        endwhile;
-    endif;
-    ?>
+    <?php get_template_part('template-parts/custom-about-us'); ?>
+    <?php get_template_part('template-parts/partners'); ?>
 
 
 </main>
