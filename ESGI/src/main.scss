@@ -10,13 +10,14 @@
  * Requires PHP:      8.2
  */
 
-@import "partials/functions";
-@import "partials/fonts";
-@import "partials/globals";
+@import "partials/_functions.scss";
+@import "partials/_fonts.scss";
+@import "partials/_globals.scss";
 
-@import "components/header";
-@import "components/footer";
+@import "components/_header.scss";
+@import "components/_footer.scss";
 
 @import "sections/team-members";
 @import "sections/about-us";
 
+@import "views/_404.scss";
