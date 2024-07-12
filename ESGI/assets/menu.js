@@ -11,13 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var menuCloseSVG = esgiIcons.menuClose;
     var logoSVG = esgiIcons.logo;
     var originalLogo = esgiIcons.originalLogo;
+    var menuOpenWhiteSVG = esgiIcons.menuOpenWhite;
 
     function toggleMenu() {
         console.log('toggleMenu called');
         if (mainMenu.classList.contains('active')) {
             mainMenu.classList.remove('active');
             console.log('Menu hidden');
-            menuIcon.innerHTML = menuOpenSVG;
+            menuIcon.innerHTML = is404Page ? menuOpenWhiteSVG : menuOpenSVG;
             if (!is404Page) {
                 header.style.backgroundColor = '';
                 siteLogo.innerHTML = originalLogo;
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var menuLinks = mainMenu.querySelectorAll('a');
     menuLinks.forEach(function(link) {
         link.addEventListener('click', function () {
+            // Close the menu
             if (mainMenu.classList.contains('active')) {
                 toggleMenu();
             }
