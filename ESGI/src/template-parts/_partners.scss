@@ -1,0 +1,17 @@
+.partners-section {
+    h2 {
+        @include heading2;
+        color: var(--main-color);
+    }
+    margin: 78px 156px 234px 156px;
+    display: flex;
+    flex-direction: column ;
+    gap: 32px;
+    .partners-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}

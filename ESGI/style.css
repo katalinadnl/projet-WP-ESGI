@@ -76,10 +76,39 @@ main h1 {
 }
 
 .featured-image img {
+  margin-top: 160px;
   display: block;
   width: 75%;
   margin-left: auto;
   margin-right: 0;
+}
+
+h1 {
+  font-family: "Mulish", sans-serif;
+  font-size: 5.25rem;
+  line-height: 6.58875rem;
+  font-weight: 600;
+  color: var(--main-color);
+  margin-left: 160px;
+  width: 65%;
+}
+@media (max-width: 1440px) {
+  h1 {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+  }
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.75rem;
+    line-height: 4.6875rem;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 3rem;
+    line-height: 3.75rem;
+  }
 }
 
 header .container .container-header {
@@ -122,6 +151,7 @@ header .main-menu a:hover::after {
 }
 header .main-menu ul {
   list-style: none;
+  text-align: right;
 }
 header .close-menu-button {
   display: block;
@@ -322,20 +352,51 @@ footer .container .container-footer-footer .rs ul a {
 }
 
 .section-custom {
+  display: flex;
+  flex-direction: column;
   width: 75%;
+}
+.section-custom .about-us {
   display: flex;
   gap: 160px;
 }
-.section-custom img {
+.section-custom .about-us img {
   max-width: 45%;
 }
-.section-custom .custom-informations {
+.section-custom .about-us .custom-informations {
   width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.section-custom .custom-informations .information-section h3 {
+.section-custom .information-section h2 {
+  font-family: "Mulish", sans-serif;
+  font-size: 3.9375rem;
+  line-height: 4.941875rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 600;
+  color: var(--main-color);
+  margin-bottom: 0px;
+}
+@media (max-width: 1440px) {
+  .section-custom .information-section h2 {
+    font-size: 3.375rem;
+    line-height: 4.224375rem;
+  }
+}
+@media (max-width: 768px) {
+  .section-custom .information-section h2 {
+    font-size: 2.8125rem;
+    line-height: 3.515625rem;
+  }
+}
+@media (max-width: 480px) {
+  .section-custom .information-section h2 {
+    font-size: 2.25rem;
+    line-height: 2.8125rem;
+  }
+}
+.section-custom .information-section h3 {
   font-family: "Mulish", sans-serif;
   font-size: 2.9375rem;
   line-height: 3.686875rem;
@@ -344,24 +405,24 @@ footer .container .container-footer-footer .rs ul a {
   margin-bottom: 0px;
 }
 @media (max-width: 1440px) {
-  .section-custom .custom-informations .information-section h3 {
+  .section-custom .information-section h3 {
     font-size: 2.5rem;
     line-height: 3.125rem;
   }
 }
 @media (max-width: 768px) {
-  .section-custom .custom-informations .information-section h3 {
+  .section-custom .information-section h3 {
     font-size: 2.0625rem;
     line-height: 2.578125rem;
   }
 }
 @media (max-width: 480px) {
-  .section-custom .custom-informations .information-section h3 {
+  .section-custom .information-section h3 {
     font-size: 1.625rem;
     line-height: 2.03125rem;
   }
 }
-.section-custom .custom-informations .information-section p {
+.section-custom .information-section p {
   font-family: "Mulish", sans-serif;
   font-size: 1.25rem;
   line-height: 2.375rem;
@@ -369,27 +430,34 @@ footer .container .container-footer-footer .rs ul a {
   color: var(--grey);
 }
 @media (max-width: 1440px) {
-  .section-custom .custom-informations .information-section p {
+  .section-custom .information-section p {
     font-size: 1.0625rem;
     line-height: 2.03125rem;
   }
 }
 @media (max-width: 768px) {
-  .section-custom .custom-informations .information-section p {
+  .section-custom .information-section p {
     font-size: 0.875rem;
     line-height: 1.640625rem;
   }
 }
 @media (max-width: 480px) {
-  .section-custom .custom-informations .information-section p {
+  .section-custom .information-section p {
     font-size: 0.6875rem;
     line-height: 1.328125rem;
   }
+}
+.section-custom .information-section.intro {
+  width: 45%;
+  display: block;
+  margin: 160px auto;
 }
 
 @media (max-width: 1440px) {
   .section-custom {
     width: 90%;
+  }
+  .section-custom .about-us {
     gap: 0px;
     justify-content: space-between;
   }
@@ -400,9 +468,11 @@ footer .container .container-footer-footer .rs ul a {
 }
 @media (max-width: 768px) {
   .section-custom {
+    width: 100%;
+  }
+  .section-custom .about-us {
     flex-direction: column;
     align-items: center;
-    width: 100%;
   }
   img,
   .custom-informations {
@@ -431,6 +501,45 @@ footer .container .container-footer-footer .rs ul a {
     width: 90%;
   }
 }
+.partners-section {
+  margin: 78px 156px 234px 156px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.partners-section h2 {
+  font-family: "Mulish", sans-serif;
+  font-size: 3.9375rem;
+  line-height: 4.941875rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 600;
+  color: var(--main-color);
+}
+@media (max-width: 1440px) {
+  .partners-section h2 {
+    font-size: 3.375rem;
+    line-height: 4.224375rem;
+  }
+}
+@media (max-width: 768px) {
+  .partners-section h2 {
+    font-size: 2.8125rem;
+    line-height: 3.515625rem;
+  }
+}
+@media (max-width: 480px) {
+  .partners-section h2 {
+    font-size: 2.25rem;
+    line-height: 2.8125rem;
+  }
+}
+.partners-section .partners-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 body.error-404 header#main-header {
   background-color: var(--main-color);
 }
