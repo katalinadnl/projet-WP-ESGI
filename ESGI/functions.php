@@ -10,9 +10,11 @@ function esgi_enqueue_scripts() {
         'menuClose' => esgi_get_icon('menu_close'),
         'logo' => esgi_get_icon('logo'),
         'originalLogo' => get_custom_logo(),
+        'menuOpenWhite' => esgi_get_icon('menu_open_white')
     ]);
 }
 add_action('wp_enqueue_scripts', 'esgi_enqueue_scripts');
+
 
 add_action('admin_enqueue_scripts', 'esgi_enqueue_admin_styles');
 function esgi_enqueue_admin_styles() {
