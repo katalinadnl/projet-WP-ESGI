@@ -1,0 +1,58 @@
+.team-section {
+    h2 {
+        @include heading2;
+    }
+    display: flex;
+    flex-direction: column;
+
+
+    .team-members-container {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+        flex-wrap: wrap; // Allow items to wrap to a new line if needed
+
+        .team-member {
+            flex: 1 1 22%; // Allow items to shrink and grow, ensuring they take up equal space
+
+            img {
+                width: 100%;
+                height: auto; // Maintain aspect ratio
+            }
+
+            h4 {
+                @include heading4;
+            }
+
+            p {
+                @include p20;
+                color: rgba(138, 138, 138, 1);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .team-members-container {
+            .team-member {
+                flex: 1 1 45%; // Take full width on small screens
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .team-members-container {
+            flex-direction: column;
+            align-items: center; // Center the content for smaller screens
+
+            .team-member {
+                flex: 1 1 100%; // Take full width on small screens
+            }
+        }
+    }
+
+    @media (max-width: 1440px) {
+        .team-members-container {
+            gap: 24px;
+        }
+    }
+}

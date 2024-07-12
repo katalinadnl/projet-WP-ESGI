@@ -14,7 +14,9 @@ if (have_posts()) :
 endif;
 
 ?>
-
+    <?php
+        get_template_part('template-parts/team-members');
+    ?>
 </main>
 
 <?php

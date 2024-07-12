@@ -1,4 +1,4 @@
-git-- Adminer 4.8.1 MySQL 5.5.5-10.6.4-MariaDB-1:10.6.4+maria~focal dump
+-- Adminer 4.8.1 MySQL 5.5.5-10.6.4-MariaDB-1:10.6.4+maria~focal dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';

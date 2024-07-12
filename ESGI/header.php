@@ -9,8 +9,6 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
     <header>
         <div class="container">
             <div class="container-header">
@@ -26,7 +24,7 @@
                     if (has_nav_menu('primary_menu')) {
                         wp_nav_menu([
                             'menu' => 'primary_menu',
-                            'container' => false
+                            'container' => 'nav',
                         ]);
                     }
                     ?>

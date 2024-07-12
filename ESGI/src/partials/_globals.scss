@@ -18,10 +18,25 @@ body {
 }
 
 main {
+    padding: 158px;
     background-color: var(--bg-color);
     @include p26;
     h1{
         @include heading1;
         color: var(--main-color)
+    }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 1440px) {
+    main{
+        padding: 120px;
     }
 }
