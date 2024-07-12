@@ -18,8 +18,8 @@ add_action('after_setup_theme', 'esgi_register_nav_menu');
 function esgi_register_nav_menu()
 {
     register_nav_menus([
-        'primary-menu' => __('Primary Menu', 'esgi-theme'),
-        'footer-menu' => __('Footer Menu', 'esgi-theme')
+        'primary_menu' => __('Primary Menu', 'esgi-theme'),
+        'footer_menu' => __('Footer Menu', 'esgi-theme')
     ]);
 }
 
@@ -169,4 +169,122 @@ function esgi_get_partners()
         $partners['logo_' . $i] = get_theme_mod('esgi_partners_logo_' . $i);
     }
     return $partners;
+}
+
+if (class_exists('WP_Customize_Control')) {
+    class WP_Customize_Heading_Control extends WP_Customize_Control {
+        public $type = 'heading';
+
+        public function render_content() {
+            if (isset($this->label)) {
+                echo '<h2 style="margin: 15px 0; border-bottom: 1px solid #ccc;">' . esc_html($this->label) . '</h2>';
+            }
+            if (isset($this->description)) {
+                echo '<p>' . esc_html($this->description) . '</p>';
+            }
+        }
+    }
+}
+
+add_action('customize_register', 'esgi_customize_register_team');
+function esgi_customize_register_team($wp_customize)
+{
+    // section team members
+    $wp_customize->add_section('esgi_team', array(
+        'title' => __('Membres de L\'équipe', 'esgi'),
+        'description' => __('Ajouter les membres de l\'équipe', 'esgi'),
+        'priority' => 2,
+    ));
+
+    $members = 4;
+
+    for ($i = 1; $i <= $members; $i++) {
+
+        // Add a heading for each team member
+        $wp_customize->add_control(new WP_Customize_Heading_Control($wp_customize, 'esgi_member_heading_' . $i, array(
+            'label' => __('Membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => array(),
+        )));
+
+        // Name
+        $wp_customize->add_setting('esgi_member_name_' . $i, array(
+            'description' => __('Name du membre ' . $i, 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_member_name_' . $i, array(
+            'label' => __('Name du membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => 'esgi_member_name_' . $i,
+            'type' => 'text',
+        ));
+
+        // Photo
+        $wp_customize->add_setting('esgi_member_photo_' . $i, array(
+            'description' => __('Photo du membre ' . $i, 'esgi'),
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+
+        $wp_customize->add_control(new WP_Customize_Image_control($wp_customize, 'esgi_member_photo_' . $i, array(
+            'label' => __('Photo du membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => 'esgi_member_photo_' . $i,
+        )));
+
+        // Email
+        $wp_customize->add_setting('esgi_member_email_' . $i, array(
+            'description' => __('Email du membre ' . $i, 'esgi'),
+            'sanitize_callback' => 'sanitize_email',
+        ));
+
+        $wp_customize->add_control('esgi_member_email_' . $i, array(
+            'label' => __('Email du membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => 'esgi_member_email_' . $i,
+            'type' => 'email',
+        ));
+
+        // Phone
+        $wp_customize->add_setting('esgi_member_number_' . $i, array(
+            'description' => __('Numéro du membre ' . $i, 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_member_number_' . $i, array(
+            'label' => __('Numéro du membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => 'esgi_member_number_' . $i,
+            'type' => 'text',
+        ));
+
+        // Position
+        $wp_customize->add_setting('esgi_member_position_' . $i, array(
+            'description' => __('Position du membre ' . $i, 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_member_position_' . $i, array(
+            'label' => __('Position du membre ' . $i, 'esgi'),
+            'section' => 'esgi_team',
+            'settings' => 'esgi_member_position_' . $i,
+            'type' => 'text',
+        ));
+    }
+}
+
+function esgi_get_team()
+{
+    $team = array();
+    $members = 4;
+    for ($i = 1; $i <= $members; $i++) {
+        $team[] = array(
+            'name' => get_theme_mod('esgi_member_name_' . $i),
+            'photo' => get_theme_mod('esgi_member_photo_' . $i),
+            'email' => get_theme_mod('esgi_member_email_' . $i),
+            'number' => get_theme_mod('esgi_member_number_' . $i),
+            'position' => get_theme_mod('esgi_member_position_' . $i),
+        );
+    }
+    return $team;
 }
