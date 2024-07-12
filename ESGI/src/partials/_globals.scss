@@ -18,10 +18,11 @@ body {
 }
 
 main {
-    background-color: var(--bg-color);
-    @include p26;
-    h1{
-        @include heading1;
-        color: var(--main-color)
-    }
+  padding: rem(48) rem(159);
+  background-color: var(--bg-color);
+  @include p26;
+  h1{
+      @include heading1;
+      color: var(--main-color)
+  }
 }

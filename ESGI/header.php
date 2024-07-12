@@ -9,28 +9,44 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-    <header>
-        <div class="container">
-            <div class="container-header">
-                <?= get_custom_logo() ?>
-                <div class="open-menu">
-                    <a href="#main-menu" class="open-menu-button">
-                        <?= esgi_get_icon('menu'); ?>
+<header id="main-header" class="<?php if (is_404()) echo 'header-404'; ?>">
+    <div class="container">
+        <div class="container-header">
+            <div id="site-logo">
+                <?php
+                if (is_404()) {
+                    echo esgi_get_icon('logo');
+                } else {
+                    echo get_custom_logo();
+                }
+                ?>
+            </div>
+            <div class="menu">
+                <div class="open-menu" id="open-menu">
+                    <a class="open-menu-button" id="menu-icon">
+                        <?php
+                        if (is_404()) {
+                            echo esgi_get_icon('menu_open_white');
+                        } else {
+                            echo esgi_get_icon('menu_open');
+                        }
+                        ?>
                     </a>
                 </div>
-                <!-- <nav class="main-menu" id="main-menu">
-                    <a href="" class="close-menu-button">x</a>
+                <nav class="main-menu" id="main-menu">
                     <?php
-                    if (has_nav_menu('primary_menu')) {
+                    if (has_nav_menu('primary-menu')) {
                         wp_nav_menu([
-                            'menu' => 'primary_menu',
-                            'container' => false
+                            'menu' => 'primary-menu',
+                            'container' => '',
                         ]);
                     }
                     ?>
-                </nav> -->
+                </nav>
             </div>
         </div>
-    </header>
+    </div>
+</header>
+<?php wp_footer(); ?>
+</body>
+</html>
