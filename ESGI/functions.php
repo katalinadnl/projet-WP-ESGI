@@ -295,7 +295,7 @@ add_action('add_meta_boxes', 'esgi_add_custom_meta_boxes');
 function esgi_add_custom_meta_boxes() {
     add_meta_box(
         'custom_section_meta_box', // Unique ID
-        'Custom Sections', // Box title
+        'Custom Section', // Box title
         'custom_section_meta_box_html', // Content callback, must be of type callable
         'page', // Post type
         'side', // Context
@@ -310,6 +310,7 @@ function custom_section_meta_box_html($post) {
     $information_content2 = get_post_meta($post->ID, '_information_content2', true);
     $information_title3 = get_post_meta($post->ID, '_information_title3', true);
     $information_content3 = get_post_meta($post->ID, '_information_content3', true);
+    $information_photo = get_post_meta($post->ID, '_information_photo', true);
 
 
     // Add nonce for security and authentication
@@ -333,7 +334,15 @@ function custom_section_meta_box_html($post) {
 
     <label for="information_content3"><?php _e('Information Content 3', 'textdomain'); ?></label>
     <textarea id="information_content3" name="information_content3" rows="4" cols="50"><?php echo esc_textarea($information_content3); ?></textarea>
-    <?php
+
+    <label for="information_photo"><?php _e('Information Photo', 'textdomain'); ?></label>
+    <input type="file" id="information_photo" name="information_photo" />
+
+    <?php if ($information_photo) : ?>
+        <img src="<?php echo esc_url($information_photo); ?>" alt="<?php _e('Uploaded photo', 'textdomain'); ?>" style="max-width: 100%; height: auto;" />
+    <?php endif; ?>
+    <?php //image type should be changed
+
 }
 
 add_action('save_post', 'esgi_save_custom_meta_box_data');
@@ -398,4 +407,66 @@ function esgi_save_custom_meta_box_data($post_id) {
             sanitize_textarea_field($_POST['information_content3'])
         );
     }
+    if (!empty($_FILES['information_photo']['name'])) {
+        $supported_types = array('image/jpeg', 'image/png', 'image/gif');
+        $arr_file_type = wp_check_filetype(basename($_FILES['information_photo']['name']));
+        $uploaded_type = $arr_file_type['type'];
+
+        if (in_array($uploaded_type, $supported_types)) {
+            $upload = wp_upload_bits($_FILES['information_photo']['name'], null, file_get_contents($_FILES['information_photo']['tmp_name']));
+            if (isset($upload['url']) && $upload['url'] != '') {
+                update_post_meta($post_id, '_information_photo', esc_url($upload['url']));
+            }
+        }
+    }
 }
+
+
+add_action('add_meta_boxes', 'esgi_add_custom_meta_description');
+function esgi_add_custom_meta_description() {
+    add_meta_box(
+        'description_meta_box', // Unique ID
+        'Description and Slogan', // Box title
+        'description_meta_box_html', // Content callback, must be of type callable
+        'page', // Post type
+        'normal', // Context
+        'default' // Priority
+    );
+}
+
+function description_meta_box_html($post) {
+    $description = get_post_meta($post->ID, '_custom_page_description', true);
+    $slogan = get_post_meta($post->ID, '_custom_page_slogan', true);
+    wp_nonce_field('save_custom_page_description', 'custom_page_description_nonce');
+    ?>
+    <label for="custom_page_description"><?php _e('Page Description', 'textdomain'); ?></label>
+    <textarea name="custom_page_description" id="custom_page_description" rows="4" style="width: 100%;"><?php echo esc_textarea($description); ?></textarea>
+
+    <label for="custom_page_slogan"><?php _e('Page Slogan', 'textdomain'); ?></label>
+    <input type="text" name="custom_page_slogan" id="custom_page_slogan" value="<?php echo esc_attr($slogan); ?>" style="width: 100%;" />
+    <?php
+}
+
+add_action('save_post', 'save_custom_page_description');
+function save_custom_page_description($post_id) {
+    if (!isset($_POST['custom_page_description_nonce']) || !wp_verify_nonce($_POST['custom_page_description_nonce'], 'save_custom_page_description')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['custom_page_description'])) {
+        update_post_meta($post_id, '_custom_page_description', sanitize_textarea_field($_POST['custom_page_description']));
+    }
+
+    if (isset($_POST['custom_page_slogan'])) {
+        update_post_meta($post_id, '_custom_page_slogan', sanitize_text_field($_POST['custom_page_slogan']));
+    }
+}
+

@@ -1,4 +1,5 @@
 .team-section {
+    padding: 158px;
     h2 {
         @include heading2;
     }
@@ -51,8 +52,12 @@
     }
 
     @media (max-width: 1440px) {
-        .team-members-container {
-            gap: 24px;
+        .team-section {
+            padding: 120px;
+            .team-members-container {
+                gap: 24px;
+            }
         }
+
     }
 }
