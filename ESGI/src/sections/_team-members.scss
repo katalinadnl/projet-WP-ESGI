@@ -1,4 +1,5 @@
 .team-section {
+    padding: 158px;
     h2 {
         @include heading2;
     }
@@ -10,14 +11,14 @@
         display: flex;
         flex-direction: row;
         gap: 32px;
-        flex-wrap: wrap; // Allow items to wrap to a new line if needed
+        flex-wrap: wrap;
 
         .team-member {
-            flex: 1 1 22%; // Allow items to shrink and grow, ensuring they take up equal space
+            flex: 1 1 22%;
 
             img {
                 width: 100%;
-                height: auto; // Maintain aspect ratio
+                height: auto;
             }
 
             h4 {
@@ -34,7 +35,7 @@
     @media (max-width: 768px) {
         .team-members-container {
             .team-member {
-                flex: 1 1 45%; // Take full width on small screens
+                flex: 1 1 45%;
             }
         }
     }
@@ -42,17 +43,21 @@
     @media (max-width: 480px) {
         .team-members-container {
             flex-direction: column;
-            align-items: center; // Center the content for smaller screens
+            align-items: center;
 
             .team-member {
-                flex: 1 1 100%; // Take full width on small screens
+                flex: 1 1 100%;
             }
         }
     }
 
     @media (max-width: 1440px) {
-        .team-members-container {
-            gap: 24px;
+        .team-section {
+            padding: 120px;
+            .team-members-container {
+                gap: 24px;
+            }
         }
+
     }
 }

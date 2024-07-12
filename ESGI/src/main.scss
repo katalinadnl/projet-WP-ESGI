@@ -16,6 +16,8 @@
 
 @import "components/_header.scss";
 @import "components/_footer.scss";
-@import "components/_team-members.scss";
+
+@import "sections/team-members";
+@import "sections/about-us";
 
 @import "views/_404.scss";

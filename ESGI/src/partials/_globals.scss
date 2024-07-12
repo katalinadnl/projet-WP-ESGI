@@ -18,14 +18,24 @@ body {
 }
 
 main {
-  padding: rem(48) rem(159);
-  background-color: var(--bg-color);
-  @include p26;
-  h1{
-      @include heading1;
-      color: var(--main-color)
-  }
+    background-color: var(--bg-color);
+    @include p26;
+    h1{
+        @include heading1;
+        color: var(--main-color)
+    }
 }
+
+.featured-image{
+    img{
+        display: block;
+        width: 75%;
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+
 
 @media (max-width: 768px) {
 
@@ -36,7 +46,5 @@ main {
 }
 
 @media (max-width: 1440px) {
-    main{
-        padding: 120px;
-    }
+
 }
