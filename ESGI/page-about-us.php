@@ -2,7 +2,7 @@
 /* Template Name: About Us */
  get_header(); ?>
 
-<main class="about-us">
+<main id="main-content" class="about-us">
 
     <!-- title -->
     <h1><?php the_title(); ?></h1>

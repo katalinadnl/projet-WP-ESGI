@@ -9,7 +9,7 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<header id="main-header" class="<?php if (is_404()) echo 'header-404'; ?>">
+<header id="main-header" class="<?php if (is_404()) echo 'header-404';?>">
     <div class="container">
         <div class="container-header">
             <div id="site-logo">

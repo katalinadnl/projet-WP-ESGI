@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var closeMenuButton = mainMenu.querySelector('.close-menu-button');
     var menuIcon = document.getElementById('menu-icon');
     var header = document.getElementById('main-header');
+    var main = document.getElementById('main-content');
     var siteLogo = document.getElementById('site-logo');
     var is404Page = document.body.classList.contains('error-404');
 
@@ -17,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('toggleMenu called');
         if (mainMenu.classList.contains('active')) {
             mainMenu.classList.remove('active');
+            header.classList.remove('header-global');
+            main.style.marginTop = '0rem';
             console.log('Menu hidden');
             menuIcon.innerHTML = is404Page ? menuOpenWhiteSVG : menuOpenSVG;
             if (!is404Page) {
@@ -25,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
             mainMenu.classList.add('active');
+            header.classList.add('header-global')
+            main.style.marginTop = '12.3rem';
             console.log('Menu shown');
             menuIcon.innerHTML = menuCloseSVG;
             header.style.backgroundColor = 'rgba(5, 10, 58, 1)';
