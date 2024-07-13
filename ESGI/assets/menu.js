@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var menuOpenSVG = esgiIcons.menuOpen;
     var menuCloseSVG = esgiIcons.menuClose;
-    var logoSVG = esgiIcons.logo;
-    var originalLogo = esgiIcons.originalLogo;
+    var logoSVG = '<a href="/">' + esgiIcons.logo + '</a>';
+    var originalLogo = '<a href="/">' + esgiIcons.originalLogo + '</a>';
     var menuOpenWhiteSVG = esgiIcons.menuOpenWhite;
 
     function toggleMenu() {

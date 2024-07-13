@@ -13,13 +13,15 @@
     <div class="container">
         <div class="container-header">
             <div id="site-logo">
-                <?php
-                if (is_404()) {
-                    echo esgi_get_icon('logo');
-                } else {
-                    echo get_custom_logo();
-                }
-                ?>
+                <a href="/">
+                    <?php
+                    if (is_404()) {
+                        echo esgi_get_icon('logo');
+                    } else {
+                        echo get_custom_logo();
+                    }
+                    ?>
+                </a>
             </div>
             <div class="menu">
                 <div class="open-menu" id="open-menu">
