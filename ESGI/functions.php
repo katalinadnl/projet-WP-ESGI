@@ -1,10 +1,10 @@
 <?php
-
+//for the styles
+add_action('wp_enqueue_scripts', 'esgi_enqueue_scripts');
 function esgi_enqueue_scripts() {
     wp_enqueue_script('menu-script', get_template_directory_uri() . '/assets/menu.js', array('jquery'), null, true);
     wp_enqueue_style('main', get_stylesheet_uri());
 
-    // Passer les données PHP à JavaScript
     wp_localize_script('menu-script', 'esgiIcons', [
         'menuOpen' => esgi_get_icon('menu_open'),
         'menuClose' => esgi_get_icon('menu_close'),
@@ -13,13 +13,13 @@ function esgi_enqueue_scripts() {
         'menuOpenWhite' => esgi_get_icon('menu_open_white')
     ]);
 }
-add_action('wp_enqueue_scripts', 'esgi_enqueue_scripts');
 
-
+//for the admin styles
 add_action('admin_enqueue_scripts', 'esgi_enqueue_admin_styles');
 function esgi_enqueue_admin_styles() {
     wp_enqueue_style('admin-styles', get_template_directory_uri() . '/admin-styles.css');
 }
+
 
 add_action('after_setup_theme', 'esgi_register_nav_menu');
 function esgi_register_nav_menu()
@@ -49,88 +49,77 @@ function esgi_get_icon($name)
     return isset($$name) ? $$name : '';
 }
 
+// Add customizer options
+if (class_exists('WP_Customize_Control')) {
+    class WP_Customize_Heading_Control extends WP_Customize_Control {
+        public $type = 'heading';
+
+        public function render_content() {
+            if (isset($this->label)) {
+                echo '<h2 style="margin: 15px 0; border-bottom: 1px solid #ccc;">' . esc_html($this->label) . '</h2>';
+            }
+            if (isset($this->description)) {
+                echo '<p>' . esc_html($this->description) . '</p>';
+            }
+        }
+    }
+}
+
 add_action('customize_register', 'esgi_customize_register');
 function esgi_customize_register($wp_customize) {
-    // Ajout d'une nouvelle section
+    // Ajout de la section Paramètres ESGI
     $wp_customize->add_section('esgi_section', [
         'title' => __('Paramètres ESGI'),
         'description' => __('Personnalisez votre thème ESGI'),
-        'panel' => '', // Not typically needed.
+        'panel' => '',
         'priority' => 160,
         'capability' => 'edit_theme_options',
-        'theme_supports' => '', // Rarely needed.
+        'theme_supports' => '',
     ]);
 
-    // Ajout d'un nouveau parametre (main-color)
+
     $wp_customize->add_setting('main_color', [
-        'type' => 'theme_mod', // or 'option'
+        'type' => 'theme_mod',
         'capability' => 'edit_theme_options',
-        'theme_supports' => '', // Rarely needed.
+        'theme_supports' => '',
         'default' => '',
-        'transport' => 'refresh', // or postMessage
+        'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_hex_color',
-        'sanitize_js_callback' => '', // Basically to_json.
+        'sanitize_js_callback' => '',
     ]);
 
-    // Ajout d'un controle
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'main_color', [
         'label' => __('Couleur principale', 'ESGI'),
         'section' => 'esgi_section',
     ]));
 
-    // Ajout d'un controle
     $wp_customize->add_control('is_dark', [
         'type' => 'checkbox',
-        'priority' => 0, // Within the section.
-        'section' => 'esgi_section', // Required, core or custom.
+        'priority' => 0,
+        'section' => 'esgi_section',
         'label' => __('Dark mode'),
         'description' => __('Black is beautiful.'),
     ]);
 
-    // Ajout d'un nouveau parametre (has_sidebar)
-    $wp_customize->add_setting('has_sidebar', [
-        'type' => 'theme_mod', // or 'option'
-        'capability' => 'edit_theme_options',
-        'theme_supports' => '', // Rarely needed.
-        'default' => '',
-        'transport' => 'refresh', // or postMessage
-        'sanitize_callback' => 'esgi_sanitize_bool',
-        'sanitize_js_callback' => '', // Basically to_json.
-    ]);
 
-    // Ajout d'un controle
-    $wp_customize->add_control('has_sidebar', [
-        'type' => 'checkbox',
-        'priority' => 20, // Within the section.
-        'section' => 'esgi_section', // Required, core or custom.
-        'label' => __('Afficher la sidebar'),
-        'description' => __(''),
-    ]);
-
-    // Ajout d'un nouveau parametre (is_dark)
     $wp_customize->add_setting('is_dark', [
-        'type' => 'theme_mod', // or 'option'
+        'type' => 'theme_mod',
         'capability' => 'edit_theme_options',
-        'theme_supports' => '', // Rarely needed.
+        'theme_supports' => '',
         'default' => '',
-        'transport' => 'refresh', // or postMessage
+        'transport' => 'refresh',
         'sanitize_callback' => 'esgi_sanitize_bool',
-        'sanitize_js_callback' => '', // Basically to_json.
+        'sanitize_js_callback' => '',
     ]);
-    // Ajout d'un controle
+
     $wp_customize->add_control('is_dark', [
         'type' => 'checkbox',
-        'priority' => 0, // Within the section.
-        'section' => 'esgi_section', // Required, core or custom.
+        'priority' => 0,
+        'section' => 'esgi_section',
         'label' => __('Dark mode'),
         'description' => __('Black is beautiful.'),
     ]);
-}
 
-// Ajout de la section partners
-add_action('customize_register', 'esgi_customize_register_partners');
-function esgi_customize_register_partners($wp_customize)
-{
     // section partners
     $wp_customize->add_section('esgi_partners', array(
         'title' => __('Partenaires', 'esgi'),
@@ -154,38 +143,7 @@ function esgi_customize_register_partners($wp_customize)
             'settings' => 'esgi_partners_logo_' . $i,
         )));
     }
-}
 
-// Récupère les urls des logos des partenaires depuis les réglages du Customizer.
-function esgi_get_partners()
-{
-    $partners = array();
-    $num_partners = 6;
-    for ($i = 1; $i <= $num_partners; $i++) {
-        $partners['logo_' . $i] = get_theme_mod('esgi_partners_logo_' . $i);
-    }
-    return $partners;
-}
-
-
-if (class_exists('WP_Customize_Control')) {
-    class WP_Customize_Heading_Control extends WP_Customize_Control {
-        public $type = 'heading';
-
-        public function render_content() {
-            if (isset($this->label)) {
-                echo '<h2 style="margin: 15px 0; border-bottom: 1px solid #ccc;">' . esc_html($this->label) . '</h2>';
-            }
-            if (isset($this->description)) {
-                echo '<p>' . esc_html($this->description) . '</p>';
-            }
-        }
-    }
-}
-
-add_action('customize_register', 'esgi_customize_register_team');
-function esgi_customize_register_team($wp_customize)
-{
     // section team members
     $wp_customize->add_section('esgi_team', array(
         'title' => __('Membres de L\'équipe', 'esgi'),
@@ -269,6 +227,112 @@ function esgi_customize_register_team($wp_customize)
         ));
     }
 
+    // section team members
+    $wp_customize->add_section('esgi_location', array(
+        'title' => __('Adresse', 'esgi'),
+        'description' => __('Ajouter l\'adresse de l\'entreprise', 'esgi'),
+        'priority' => 3,
+    ));
+
+
+        $wp_customize->add_control(new WP_Customize_Heading_Control($wp_customize, 'esgi_location_heading', array(
+            'label' => __('Adresse', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => array(),
+        )));
+
+        // Rue
+        $wp_customize->add_setting('esgi_location_street', array(
+            'description' => __('Rue ', 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_location_street', array(
+            'label' => __('Rue', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => 'esgi_location_street',
+            'type' => 'text',
+        ));
+
+
+        // Code Postal
+        $wp_customize->add_setting('esgi_location_code', array(
+            'description' => __('Code Postal ', 'esgi'),
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('esgi_location_code', array(
+            'label' => __('Code Postal', 'esgi'),
+            'section' => 'esgi_location',
+            'settings' => 'esgi_location_code',
+            'type' => 'text',
+        ));
+
+    // Add a section for the sidebar settings
+    $wp_customize->add_section( 'esgi_sidebar_section', array(
+        'title'    => __( 'Sidebar Settings', 'esgi' ),
+        'priority' => 30,
+    ) );
+
+    // Ajout d'un nouveau parametre (has_sidebar)
+    $wp_customize->add_setting('has_sidebar', [
+        'type' => 'theme_mod',
+        'capability' => 'edit_theme_options',
+        'theme_supports' => '',
+        'default' => '',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'esgi_sanitize_bool',
+        'sanitize_js_callback' => '',
+    ]);
+
+    // Ajout d'un controle
+    $wp_customize->add_control('has_sidebar', [
+        'type' => 'checkbox',
+        'priority' => 20,
+        'section' => 'esgi_sidebar_section',
+        'label' => __('Afficher la sidebar'),
+        'description' => __(''),
+    ]);
+
+    // Add setting for sidebar background color
+    $wp_customize->add_setting( 'sidebar_bg_color', array(
+        'default'           => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    // Add control for sidebar background color
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'sidebar_bg_color_control', array(
+        'label'    => __( 'Sidebar Background Color', 'esgi' ),
+        'section'  => 'esgi_sidebar_section',
+        'settings' => 'sidebar_bg_color',
+    ) ) );
+
+    // Add setting for sidebar text color
+    $wp_customize->add_setting( 'sidebar_text_color', array(
+        'default'           => '#000000',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    // Add control for sidebar text color
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'sidebar_text_color_control', array(
+        'label'    => __( 'Sidebar Text Color', 'esgi' ),
+        'section'  => 'esgi_sidebar_section',
+        'settings' => 'sidebar_text_color',
+    ) ) );
+
+}
+
+// Récupère les urls des logos des partenaires depuis les réglages du Customizer.
+function esgi_get_partners()
+{
+    $partners = array();
+    $num_partners = 6;
+    for ($i = 1; $i <= $num_partners; $i++) {
+        $partners['logo_' . $i] = get_theme_mod('esgi_partners_logo_' . $i);
+    }
+    return $partners;
 }
 
 function esgi_get_team()
@@ -285,6 +349,21 @@ function esgi_get_team()
         );
     }
     return $team;
+}
+
+function esgi_get_location()
+{
+    $location = array();
+    $location[] = array(
+        'street' => get_theme_mod('esgi_location_street'),
+        'code' => get_theme_mod('esgi_location_code'),
+    );
+    return $location;
+}
+
+// Sanitization callback function
+function esgi_sanitize_bool($checked) {
+    return ( ( isset( $checked ) && true == $checked ) ? true : false );
 }
 
 add_action('add_meta_boxes', 'esgi_add_custom_meta_boxes');
@@ -423,14 +502,14 @@ add_action('add_meta_boxes', 'esgi_add_custom_meta_description');
 function esgi_add_custom_meta_description() {
     global $post;
     $template_file = get_post_meta($post->ID, '_wp_page_template', true);
-    if ($template_file == 'page-about-us.php') { // Only add meta boxes if the template is 'page-about-us.php'
+    if ($template_file == 'page-about-us.php') {
         add_meta_box(
-            'description_meta_box', // Unique ID
-            'Description and Slogan', // Box title
-            'description_meta_box_html', // Content callback, must be of type callable
-            'page', // Post type
-            'normal', // Context
-            'default' // Priority
+            'description_meta_box',
+            'Description and Slogan',
+            'description_meta_box_html',
+            'page',
+            'normal',
+            'default'
         );
     }
 }
@@ -478,7 +557,7 @@ function esgi_add_hp_about_us_title_meta_box() {
     if ($template_file == 'page-about-us.php') { // Only add meta boxes if the template is 'page-about-us.php'
         add_meta_box(
             'hp_about_us_title_meta_box', // Unique ID
-            'About Us Title', // Box title
+            'About Us Title for Home Page', // Box title
             'hp_about_us_title_meta_box_html', // Content callback, must be of type callable
             'page', // Post type
             'normal', // Context
@@ -561,8 +640,6 @@ function esgi_custom_image_section_shortcode() {
                     <?php endforeach; ?>
                 </div>
                             <?php
-                        } else {
-                            echo '<p>Custom section not available or fields not set.</p>';
                         }?>
 
     </section>
@@ -571,59 +648,18 @@ function esgi_custom_image_section_shortcode() {
     return ob_get_clean();
 }
 
-add_action('customize_register', 'esgi_customize_register_location');
-function esgi_customize_register_location($wp_customize)
-{
-    // section team members
-    $wp_customize->add_section('esgi_location', array(
-        'title' => __('Adresse', 'esgi'),
-        'description' => __('Ajouter l\'adresse de l\'entreprise', 'esgi'),
-        'priority' => 3,
-    ));
-
-
-        $wp_customize->add_control(new WP_Customize_Heading_Control($wp_customize, 'esgi_location_heading', array(
-            'label' => __('Adresse', 'esgi'),
-            'section' => 'esgi_location',
-            'settings' => array(),
-        )));
-
-        // Rue
-        $wp_customize->add_setting('esgi_location_street', array(
-            'description' => __('Rue ', 'esgi'),
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-
-        $wp_customize->add_control('esgi_location_street', array(
-            'label' => __('Rue', 'esgi'),
-            'section' => 'esgi_location',
-            'settings' => 'esgi_location_street',
-            'type' => 'text',
-        ));
-
-
-        // Code Postal
-        $wp_customize->add_setting('esgi_location_code', array(
-            'description' => __('Code Postal ', 'esgi'),
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-
-        $wp_customize->add_control('esgi_location_code', array(
-            'label' => __('Code Postal', 'esgi'),
-            'section' => 'esgi_location',
-            'settings' => 'esgi_location_code',
-            'type' => 'text',
-        ));
-
-
+add_action( 'widgets_init', 'esgi_widgets_init' );
+function esgi_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Blog Sidebar', 'esgi' ),
+        'id'            => 'blog-sidebar',
+        'description'   => __( 'Sidebar for blog pages', 'esgi' ),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
 }
 
-function esgi_get_location()
-{
-    $location = array();
-    $location[] = array(
-        'street' => get_theme_mod('esgi_location_street'),
-        'code' => get_theme_mod('esgi_location_code'),
-    );
-    return $location;
-}
+
+
