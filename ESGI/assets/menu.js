@@ -54,3 +54,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+
+// js/customizer.js
+
+(function( $ ) {
+    wp.customize( 'sidebar_bg_color', function( value ) {
+        value.bind( function( newval ) {
+            $( '#secondary' ).css( 'background-color', newval );
+        } );
+    } );
+    wp.customize( 'sidebar_text_color', function( value ) {
+        value.bind( function( newval ) {
+            $( '#secondary' ).css( 'color', newval );
+        } );
+    } );
+})( jQuery );
