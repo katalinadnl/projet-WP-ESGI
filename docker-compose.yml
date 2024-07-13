@@ -20,6 +20,9 @@ services:
       - type: bind
         source: ./ESGI
         target: /var/www/html/wp-content/themes/ESGI
+      - type: bind
+        source: ./plugins
+        target: /var/www/html/wp-content/plugins
     ports:
       - 88:80
     restart: always
