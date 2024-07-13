@@ -2,7 +2,7 @@
 /*Template Name: Front Page */
 get_header(); ?>
 
-<main>
+<main id="main-content">
 
     <!-- title -->
     <h1><?php the_title(); ?></h1>
