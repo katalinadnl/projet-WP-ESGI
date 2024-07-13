@@ -1,8 +1,8 @@
 <?php
-/* Template Name: About Us */
+/* Template Name: Contacts */
  get_header(); ?>
 
-<main id="main-content" class="about-us">
+<main id="main-content" class="contact">
 
     <!-- title -->
     <h1><?php the_title(); ?></h1>
@@ -13,10 +13,8 @@
             the_post_thumbnail();
         } ?>
     </div>
-
-    <?php get_template_part('template-parts/custom-about-us'); ?>
-    <?php get_template_part('template-parts/team-members'); ?>
-    <?php get_template_part('template-parts/partners'); ?>
-
+    <?php
+    the_content();
+    ?>
 </main>
 <?php get_footer(); ?>
