@@ -3,8 +3,13 @@
     <div class="team-members-container">
         <?php
         $team = esgi_get_team();
+        $count = 0; // Initialize counter
         foreach ($team as $index => $member) {
+            if ($count >= 4) {
+                break; // Exit loop after 4 members
+            }
             if ($member['photo'] || $member['email'] || $member['name'] || $member['position'] || $member['number']) {
+                $count++; // Increment counter for each displayed member
                 ?>
                 <div class="team-member">
                     <?php if ($member['photo']) { ?>
@@ -19,7 +24,6 @@
                     <?php if ($member['email']) { ?>
                         <?php echo esc_html($member['email']); ?></p>
                     <?php } ?>
-
                 </div>
                 <?php
             }

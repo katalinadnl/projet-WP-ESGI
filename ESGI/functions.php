@@ -338,7 +338,7 @@ function esgi_get_partners()
 function esgi_get_team()
 {
     $team = array();
-    $members = 4;
+    $members = 5;
     for ($i = 1; $i <= $members; $i++) {
         $team[] = array(
             'name' => get_theme_mod('esgi_member_name_' . $i),
@@ -661,5 +661,48 @@ function esgi_widgets_init() {
     ) );
 }
 
+add_action('add_meta_boxes', 'esgi_subtitle_contact_meta_box');
+function esgi_subtitle_contact_meta_box() {
+    global $post;
+    $template_file = get_post_meta($post->ID, '_wp_page_template', true);
+    if ($template_file == 'page-contacts.php') { // Only add meta boxes if the template is 'page-contacts.php'
+        add_meta_box(
+            'subtitle_contact_meta_box', // Unique ID
+            'Subtitle', // Box title
+            'esgi_subtitle_meta_box_html', // Content callback, must be of type callable
+            'page', // Post type
+            'side', // Context
+            'default' // Priority
+        );
+    }
+}
 
+function esgi_subtitle_meta_box_html($post) {
+    $subtitle = get_post_meta($post->ID, '_esgi_contact_subtitle', true);
+    wp_nonce_field('save_esgi_contact_subtitle', 'esgi_contact_subtitle_nonce');
+    ?>
+    <label for="esgi_contact_subtitle"><?php _e('Contact Page Subtitle', 'esgi-theme'); ?></label>
+    <input type="text" name="esgi_contact_subtitle" id="esgi_contact_subtitle" value="<?php echo esc_attr($subtitle); ?>" style="width: 100%;" />
+    <?php
+}
+
+
+add_action('save_post', 'save_esgi_contact_subtitle');
+function save_esgi_contact_subtitle($post_id) {
+    if (!isset($_POST['esgi_contact_subtitle_nonce']) || !wp_verify_nonce($_POST['esgi_contact_subtitle_nonce'], 'save_esgi_contact_subtitle')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['esgi_contact_subtitle'])) {
+        update_post_meta($post_id, '_esgi_contact_subtitle', sanitize_text_field($_POST['esgi_contact_subtitle']));
+    }
+}
 
