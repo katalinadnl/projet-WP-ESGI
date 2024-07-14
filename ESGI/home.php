@@ -16,14 +16,15 @@ get_header(); ?>
         }
 
         if (get_theme_mod('has_sidebar')) {
-            echo '<div class="sidebar">';
             get_sidebar();
-            echo '<div>';
         }
 
         // Custom query to fetch blog posts
-        if (have_posts()) :
+        if (have_posts()) : ?>
+        <div class="articles"> <?php
             while (have_posts()) : the_post(); ?>
+
+
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                     <header class="entry-header">
                         <?php the_title('<h2 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h2>'); ?>
@@ -32,8 +33,9 @@ get_header(); ?>
                         <?php the_excerpt(); ?>
                     </div><!-- .entry-content -->
                 </article><!-- #post-## -->
-            <?php endwhile;
-
+            <?php endwhile; ?>
+        </div>
+            <?php
             // Pagination
             the_posts_pagination(array(
                 'prev_text' => __('Previous', 'textdomain'),
