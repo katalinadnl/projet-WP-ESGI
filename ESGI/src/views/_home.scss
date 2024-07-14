@@ -1,0 +1,33 @@
+.home {
+  .content-area {
+    .site-main {
+      display: flex;
+      .articles {
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: rem(159);
+        article {
+          width: rem(550);
+          margin-left: rem(20);
+          .entry-header {
+            .entry-title {
+              a {
+                @include heading4;
+                color: var(--main-color);
+                text-decoration: none;
+              }
+            }
+            .entry-content {
+              p {
+                @include p20;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
