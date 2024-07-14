@@ -1,36 +1,57 @@
-<?php get_header() ?>
+<?php
+get_header(); ?>
 
-<main id="site-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-6 offset-3">
-                <h1 class="post-title"><?= the_title() ?></h1>
-                <div class="post-meta">
-                    <div class="post-author">
-                        <?= get_avatar($post->post_author) ?>
-                        <?= get_the_author_meta('nickname', $post->post_author) ?>
+<main id="main-content" class="article-single-page">
+    <div class="content-area">
+    <h1 class="post-title"><?php the_title(); ?></h1>
+
+        <div class="site-main">
+            <?php
+            if (get_theme_mod('has_sidebar')) {
+                get_sidebar();
+            } ?>
+
+            <div class="featured-image">
+                    <?php if (has_post_thumbnail()) {
+                        the_post_thumbnail();
+                    } ?>
+            </div>
+
+            <!-- Post Meta -->
+            <div class="post-meta">
+                    <div class="post-category">
+                        <?php the_category(', '); ?>
                     </div>
                     <time class="post-date">
-                        <!-- wordpress crée automatiquement la variable $post -->
-                        <?= wp_date('j F Y', strtotime($post->post_date)) ?>
+                        <?= wp_date('j F Y', strtotime($post->post_date)); ?>
                     </time>
                 </div>
-                <div class="post-thumbnail">
-                    <?php the_post_thumbnail(); ?>
-                </div>
+
+                <!-- Post Content -->
                 <div class="post-content">
-                    <?php the_content() ?>
+                    <?php the_content(); ?>
                 </div>
-            </div>
-            <?php if (get_theme_mod('has_sidebar')) {
-                echo '<div class="col-2 offset-1">';
-                get_sidebar();
-                echo '<div>';
-            }
-            ?>
+
+                <!-- Post Tags -->
+                <div class="post-tags">
+                    <?php the_tags('<ul><li>', '</li><li>', '</li></ul>'); ?>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="post-comments">
+                    <?php
+                    if (comments_open() || get_comments_number()) {
+                        comments_template();
+                    }
+                    ?>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="comment-form">
+                    <?php comment_form(); ?>
+                </div>
+
         </div>
     </div>
-
 </main>
-
-<?php get_footer() ?>
+<?php get_footer(); ?>
