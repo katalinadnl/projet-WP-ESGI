@@ -1,4 +1,3 @@
-//styles for footer
 footer {
     @include p15;
     color: var(--white);
@@ -14,8 +13,31 @@ footer {
         }
         .container-footer {
             padding-top: rem(70);
+            padding-bottom: rem(50);
             .contact-footer {
-                @include flexbox(row, nowrap, center, center, rem(25));
+                display: flex;
+                .contact-footer-item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    padding-right: rem(75);
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: var(--white);
+                    }
+                    h5 {
+                        font-size: rem(20);
+                    }
+                    p {
+                        color: var(--white);
+                        margin: 0 0 rem(5) 0;
+                        @include p20;
+
+                    }
+                }
             }
         }
         .container-footer-footer {

@@ -16,14 +16,14 @@
 
 @import "components/_header.scss";
 @import "components/_footer.scss";
-@import "components/sidebar";
+@import "components/sidebar.scss";
 
-@import "template-parts/team-members";
-@import "template-parts/custom-about-us";
-@import "template-parts/partners";
-@import "template-parts/contact-info";
+@import "template-parts/team-members.scss";
+@import "template-parts/custom-about-us.scss";
+@import "template-parts/partners.scss";
+@import "template-parts/contact-info.scss";
 
-@import "shortcodes/services";
+@import "shortcodes/services.scss";
 
 
 @import "views/_404.scss";

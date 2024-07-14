@@ -1,0 +1,29 @@
+.contacts-content {
+  .page-subtitle, .contact-info {
+    margin-left: rem(160);
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: rem(159);
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: rem(75);
+      &:last-child {
+        padding-right: 0;
+      }
+      a {
+        text-decoration: none;
+        color: var(--text-color);
+      }
+      p {
+        margin: 0 0 rem(5) 0;
+        @include p20;
+
+      }
+    }
+  }
+}

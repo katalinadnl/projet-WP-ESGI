@@ -5,20 +5,27 @@
                 <?= esgi_get_icon('logo'); ?>
             </a>
             <div class="contact-footer">
-                <div class="contact-footer-item">
-                    <h5 class="contact-title">Manager</h5>
+                <?php
+                $team = esgi_get_team();
 
-                    <span></span>
+                // Sort the team members
+                usort($team, function($a, $b) {
+                    $order = ['Manager' => 1, 'CEO' => 2];
+                    return $order[$a['position']] <=> $order[$b['position']];
+                });
 
-                    <span></span>
-                </div>
-                <div class="contact-footer-item">
-                    <h5 class="contact-title">CEO</h5>
-
-                    <span></span>
-
-                    <span></span>
-                </div>
+                foreach ($team as $member):
+                    if ($member['position'] == 'Manager' || $member['position'] == 'CEO'):
+                        ?>
+                        <div class="contact-footer-item">
+                            <h5 class="contact-title"><?php echo esc_html($member['position']); ?></h5>
+                            <p><?php echo esc_html($member['number']); ?></p>
+                            <p><a href="mailto:<?php echo esc_html($member['email']); ?>"><?php echo esc_html($member['email']); ?></a></p>
+                        </div>
+                    <?php
+                    endif;
+                endforeach;
+                ?>
             </div>
         </div>
         <div class="container-footer-footer">
@@ -44,5 +51,4 @@
 </footer>
 <?php wp_footer() ?>
 </body>
-
 </html>

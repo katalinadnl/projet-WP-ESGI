@@ -11,6 +11,13 @@ body.error-404 header#main-header {
       h1 {
         color: var(--white);
       }
+        p {
+          color: var(--white);
+        }
     }
   }
+}
+.error-404.customize-support {
+  background-color: var(--main-color);
+  overflow: hidden;
 }
