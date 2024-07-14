@@ -15,7 +15,11 @@ get_header();
         endwhile;
     endif;
     ?>
-
+    <div class="featured-image-services">
+                <?php if (has_post_thumbnail()) {
+                    the_post_thumbnail();
+                } ?>
+    </div>
 </main>
 
 <?php
