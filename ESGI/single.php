@@ -10,20 +10,20 @@ get_header(); ?>
             if (get_theme_mod('has_sidebar')) {
                 get_sidebar();
             } ?>
-
-            <div class="featured-image">
+            <div class="article-content">
+                <div class="featured-image">
                     <?php if (has_post_thumbnail()) {
                         the_post_thumbnail();
                     } ?>
-            </div>
+                </div>
 
-            <!-- Post Meta -->
-            <div class="post-meta">
+                <!-- Post Meta -->
+                <div class="post-meta">
                     <div class="post-category">
                         <?php the_category(', '); ?>
                     </div>
                     <time class="post-date">
-                        <?= wp_date('j F Y', strtotime($post->post_date)); ?>
+                        - <?= wp_date('j F Y', strtotime($post->post_date)); ?>
                     </time>
                 </div>
 
@@ -45,12 +45,7 @@ get_header(); ?>
                     }
                     ?>
                 </div>
-
-                <!-- Comment Form -->
-                <div class="comment-form">
-                    <?php comment_form(); ?>
-                </div>
-
+            </div>
         </div>
     </div>
 </main>
