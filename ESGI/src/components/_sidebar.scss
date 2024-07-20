@@ -7,12 +7,13 @@ aside#secondary {
         li {
             margin-bottom: rem(35);
             .wp-block-latest-posts__featured-image.alignleft {
-                width: 88px;
-                height: 88px;
+                width: rem(88);
+                height: rem(88);
             }
             .wp-block-latest-posts__post-title {
                 display: flex;
-                line-height: rem(38);
+                line-height: 1.8;
+                width: rem(383);
             }
             .wp-block-latest-posts__post-date {
                 font-size: rem(13);
@@ -60,13 +61,10 @@ ul.wp-block-archives-list.wp-block-archives li:before, .wp-block-categories-list
 }
 
 .wp-block-search__inside-wrapper {
-    padding: 10px;
+    padding: rem(10);
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: rem(1) solid #ccc;
     font-family: "Mulish", sans-serif;
-    font-size: calc(15 / 16 * 1rem);
-    line-height: calc(19.53 / 16 * 1rem);
-    font-weight: 400;
     button.wp-block-search__button.has-icon.wp-element-button {
         background: none;
         border: none;

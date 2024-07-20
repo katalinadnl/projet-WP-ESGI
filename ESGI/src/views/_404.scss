@@ -11,9 +11,20 @@ body.error-404 header#main-header {
       h1 {
         color: var(--white);
       }
-        p {
-          color: var(--white);
+      p {
+        color: var(--white);
+      }
+      .search-form {
+        label {
+          display: flex;
+          justify-content: space-between;
+          width: rem(1051);
+          padding: rem(10);
+          border: none;
+          border-bottom: rem(1) solid rgba(255, 255, 255, 0.2977);
+          font-family: "Mulish", sans-serif;
         }
+      }
     }
   }
 }
