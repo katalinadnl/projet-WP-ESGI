@@ -742,3 +742,8 @@ function esgi_comment( $comment, $args, $depth ) {
     </li>
     <?php
 }
+
+add_filter('get_the_date', 'modify_post_date_format');
+function modify_post_date_format($the_date) {
+    return date('F j, Y', strtotime($the_date));
+}
