@@ -18,14 +18,19 @@ get_header(); ?>
                 get_sidebar();
             }
 
-            // Requête personnalisée pour récupérer les articles de blog
+            // Custom query to fetch blog posts
             if (have_posts()) : ?>
                 <div class="articles">
                     <?php
                     while (have_posts()) : the_post(); ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <header class="entry-header">
-                                <?php the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>'); ?>
+                                <?php
+                                if (has_post_thumbnail()) {
+                                    the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
+                                }
+                                the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>');
+                                ?>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
                                 <?php the_excerpt(); ?>
@@ -36,8 +41,11 @@ get_header(); ?>
                 <?php
                 // Pagination
                 the_posts_pagination(array(
-                    'prev_text' => __('Précédent', 'textdomain'),
-                    'next_text' => __('Suivant', 'textdomain'),
+                    'prev_text' => '',
+                    'next_text' => '',
+                    'before_page_number' => '',
+                    'after_page_number' => '',
+                    'screen_reader_text' => __('Pagination'),
                 ));
             else :
                 echo '<p>Aucun article trouvé.</p>';
