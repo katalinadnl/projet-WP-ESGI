@@ -4,6 +4,7 @@ add_action('wp_enqueue_scripts', 'esgi_enqueue_scripts');
 function esgi_enqueue_scripts() {
     wp_enqueue_script('menu-script', get_template_directory_uri() . '/assets/menu.js', array('jquery'), null, true);
     wp_enqueue_style('main', get_stylesheet_uri());
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
     wp_localize_script('menu-script', 'esgiIcons', [
         'menuOpen' => esgi_get_icon('menu_open'),
