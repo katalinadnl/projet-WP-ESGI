@@ -64,3 +64,36 @@
     }
   }
 }
+
+
+
+.img-categorie {
+  position: relative;
+
+  .post-category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    padding: rem(16);
+    font-weight: 800;
+    font-size: rem(20);
+    line-height: rem(25.1);
+
+    @media (max-width: 1440px) {
+      font-size: rem(17);
+      line-height: rem(32.5);
+    }
+
+    @media (max-width: 768px) {
+      font-size: rem(14);
+      line-height: rem(26.25);
+    }
+
+    @media (max-width: 480px) {
+      font-size: rem(11);
+      line-height: rem(21.25);
+    }
+  }
+}
+

@@ -23,7 +23,7 @@ get_header(); ?>
                         <?php the_category(', '); ?>
                     </div>
                     <time class="post-date">
-                        - <?= wp_date('j F Y', strtotime($post->post_date)); ?>
+                        - <?= wp_date('j F, Y', strtotime($post->post_date)); ?>
                     </time>
                 </div>
 
