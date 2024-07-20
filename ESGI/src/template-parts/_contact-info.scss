@@ -1,13 +1,36 @@
 .contacts-content {
   .page-subtitle, .contact-info {
     margin-left: rem(160);
+    @media (max-width: 1440px) {
+      margin: 0 rem(80);
+    }
+    @media (max-width: 768px) {
+      margin: 0 rem(40);
+    }
+    @media (max-width: 480px) {
+      margin: 0 rem(20);
+    }
   }
+
   .contact-info {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding-right: rem(159);
     margin-top: rem(50);
+    @media (max-width: 1440px) {
+      padding-right: rem(80);
+    }
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .contact-item {
+        align-items: center;
+        padding-right: 0;
+      }
+    }
+
     .contact-item {
       display: flex;
       flex-direction: column;
@@ -23,8 +46,12 @@
       p {
         margin: 0 0 rem(5) 0;
         @include p20;
-
+      }
+      @media (max-width: 900px) {
+        align-items: center;
+        padding-right: 0;
       }
     }
   }
 }
+
