@@ -2,14 +2,16 @@
   .content-area {
     .site-main {
       display: flex;
+      justify-content: space-between;
+      margin: 0 rem(159);
       .article-content {
-        margin-right: rem(159);
-        width: 75%;
+        margin-left: rem(50);
+        width: rem(1050);
         .featured-image {
           img {
             width: 100%;
-            margin-left: 0;
-            margin-right: 0;
+            height: 100%;
+            margin: 0;
           }
         }
         .post-meta {
@@ -52,6 +54,70 @@
             font-size: rem(10.664);
             text-decoration: none;
             color: var(--grey);
+          }
+        }
+        .post-comments {
+          margin-top: rem(100);
+          .comments-area {
+            .comment-list {
+              background-color: #F9F9F9;
+              list-style: none;
+              padding: rem(20) rem(30);
+              li {
+                .comment-body {
+                  .comment-author.vcard {
+                    .fn {
+                      @include heading5;
+                    }
+                  }
+                  .comment-content {
+                    p {
+                      @include p20;
+                    }
+                  }
+                  .reply {
+                    .reply-link {
+                      .comment-reply-link {
+                        color: var(--main-color);
+                        font-weight: 800 !important;
+                        margin-left: rem(15);
+                        text-decoration: none;
+                        @include p20;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .comment-respond {
+              margin-top: rem(100);
+              .comment-form {
+                .comment-form-author {
+                  padding: rem(10);
+                  border: none;
+                  border-bottom: rem(1) solid #ccc;
+                  input {
+                    font-family: "Mulish", sans-serif;
+                    font-size: rem(20);
+                    border: none;
+                    border-radius: 0;
+                    padding: 0 rem(4);
+                  }
+                }
+                .comment-comment {
+                  padding: rem(10);
+                  border: none;
+                  border-bottom: rem(1) solid #ccc;
+                  textarea {
+                    font-family: "Mulish", sans-serif;
+                    font-size: rem(20);
+                    border: none;
+                    border-radius: 0;
+                    padding: 0 rem(4);
+                  }
+                }
+              }
+            }
           }
         }
       }
