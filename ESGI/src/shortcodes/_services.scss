@@ -2,7 +2,7 @@
     h2 {
         @include heading2;
         color: var(--main-color);
-        margin-left: 156px;
+        margin-left: rem(156);
     }
 
     .custom-image-section {
@@ -25,10 +25,10 @@
                         content: '';
                         position: absolute;
                         left: 0;
-                        bottom: -2px; // Adjust the position to place the underline
+                        bottom: rem(-2);
                         width: 100%;
-                        height: 5px; // Height of the underline
-                        background: var(--accent); // Custom underline color
+                        height: rem(5);
+                        background: var(--accent);
                     }
                 }
                 display: flex;

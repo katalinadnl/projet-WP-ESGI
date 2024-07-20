@@ -1,5 +1,5 @@
 .team-section {
-    padding: 158px;
+    padding: rem(158);
     h2 {
         @include heading2;
     }
@@ -10,7 +10,7 @@
     .team-members-container {
         display: flex;
         flex-direction: row;
-        gap: 32px;
+        gap: rem(32);
         flex-wrap: wrap;
 
         .team-member {
@@ -53,9 +53,9 @@
 
     @media (max-width: 1440px) {
         .team-section {
-            padding: 120px;
+            padding: rem(120);
             .team-members-container {
-                gap: 24px;
+                gap: rem(24);
             }
         }
 
