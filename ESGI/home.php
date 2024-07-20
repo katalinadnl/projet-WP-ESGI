@@ -25,12 +25,20 @@ get_header(); ?>
                     while (have_posts()) : the_post(); ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <header class="entry-header">
-                                <?php
-                                if (has_post_thumbnail()) {
-                                    the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
-                                }
-                                the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>');
-                                ?>
+                                <div class="img-categorie">
+                                    <?php
+                                    if (has_post_thumbnail()) {
+                                        the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
+                                    }
+
+                                    // Display the categories
+                                    $categories = get_the_category();
+                                    if ( ! empty( $categories ) ) {
+                                        echo '<span class="post-category">' . esc_html( $categories[0]->name ) . '</span>';
+                                    }
+                                    ?>
+                                </div>
+                                <?php the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>'); ?>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
                                 <?php the_excerpt(); ?>
