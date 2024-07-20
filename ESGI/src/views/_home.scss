@@ -2,25 +2,59 @@
   .content-area {
     .site-main {
       display: flex;
-      .articles {
-        width: 75%;
+      justify-content: space-between;
+      margin: 0 rem(159);
+      .articles-container {
         display: flex;
-        flex-wrap: wrap;
-        padding-right: rem(159);
-        article {
-          width: rem(550);
-          margin-left: rem(20);
-          .entry-header {
-            .entry-title {
-              a {
-                @include heading4;
-                color: var(--main-color);
-                text-decoration: none;
+        flex-direction: column;
+        width: rem(1052);
+        .articles {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          width: 100%;
+          article {
+            width: rem(502);
+            .entry-header {
+              .featured-image {
+                width: 100%;
+                height: rem(333);
+              }
+              .entry-title {
+                a {
+                  @include heading4;
+                  color: var(--main-color);
+                  text-decoration: none;
+                }
               }
             }
-            .entry-content {
-              p {
-                @include p20;
+            p {
+              @include p20;
+            }
+          }
+        }
+        .pagination {
+          margin: rem(50) 0;
+          .navigation.pagination {
+            .nav-links {
+              display: flex;
+              flex-direction: row;
+              .page-numbers.current {
+                background-color: var(--main-color);
+                color: var(--white);
+                width: 44px;
+                height: 44px;
+                font-size: rem(16);
+                text-align: center;
+
+              }
+              a {
+                width: 44px;
+                height: 44px;
+                font-size: rem(16);
+                text-align: center;
+                text-decoration: none;
+                color: var(--main-color);
               }
             }
           }
@@ -29,5 +63,3 @@
     }
   }
 }
-
-

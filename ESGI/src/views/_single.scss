@@ -30,6 +30,11 @@
             @include p20;
           }
         }
+        .post-content {
+          p {
+            @include p20;
+          }
+        }
         .post-tags {
           ul {
             list-style: none;

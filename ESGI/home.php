@@ -20,41 +20,47 @@ get_header(); ?>
 
             // Custom query to fetch blog posts
             if (have_posts()) : ?>
-                <div class="articles">
-                    <?php
-                    while (have_posts()) : the_post(); ?>
-                        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                            <header class="entry-header">
-                                <div class="img-categorie">
-                                    <?php
-                                    if (has_post_thumbnail()) {
-                                        the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
-                                    }
+                <div class="articles-container">
+                    <div class="articles">
+                        <?php
+                        while (have_posts()) : the_post(); ?>
+                            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                                <header class="entry-header">
+                                    <div class="img-categorie">
+                                        <?php
+                                        if (has_post_thumbnail()) {
+                                            the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
+                                        }
 
-                                    // Display the categories
-                                    $categories = get_the_category();
-                                    if ( ! empty( $categories ) ) {
-                                        echo '<span class="post-category">' . esc_html( $categories[0]->name ) . '</span>';
-                                    }
-                                    ?>
-                                </div>
-                                <?php the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>'); ?>
-                            </header><!-- .entry-header -->
-                            <div class="entry-content">
-                                <?php the_excerpt(); ?>
-                            </div><!-- .entry-content -->
-                        </article><!-- #post-## -->
-                    <?php endwhile; ?>
+                                        // Display the categories
+                                        $categories = get_the_category();
+                                        if (!empty($categories)) {
+                                            echo '<span class="post-category">' . esc_html($categories[0]->name) . '</span>';
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>'); ?>
+                                </header><!-- .entry-header -->
+                                <div class="entry-content">
+                                    <?php the_excerpt(); ?>
+                                </div><!-- .entry-content -->
+                            </article><!-- #post-## -->
+                        <?php endwhile; ?>
+                    </div>
+                    <div class="pagination">
+                        <?php
+                        // Pagination
+                        the_posts_pagination(array(
+                            'prev_text' => '',
+                            'next_text' => '',
+                            'before_page_number' => '',
+                            'after_page_number' => '',
+                            'screen_reader_text' => __('Pagination'),
+                        ));
+                        ?>
+                    </div>
                 </div>
-                <?php
-                // Pagination
-                the_posts_pagination(array(
-                    'prev_text' => '',
-                    'next_text' => '',
-                    'before_page_number' => '',
-                    'after_page_number' => '',
-                    'screen_reader_text' => __('Pagination'),
-                ));
+            <?php
             else :
                 echo '<p>Aucun article trouvé.</p>';
             endif;
