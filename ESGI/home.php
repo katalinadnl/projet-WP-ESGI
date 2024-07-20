@@ -18,18 +18,11 @@ get_header(); ?>
                 get_sidebar();
             }
 
-            // Custom query to fetch blog posts limited to 6
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $args = array(
-                'posts_per_page' => 6,
-                'paged' => $paged
-            );
-            $custom_query = new WP_Query($args);
-
-            if ($custom_query->have_posts()) : ?>
+            // Custom query to fetch blog posts
+            if (have_posts()) : ?>
                 <div class="articles">
                     <?php
-                    while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+                    while (have_posts()) : the_post(); ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <header class="entry-header">
                                 <?php
@@ -46,18 +39,14 @@ get_header(); ?>
                     <?php endwhile; ?>
                 </div>
                 <?php
-                // Custom Pagination
-                $big = 999999999; // need an unlikely integer
-                echo paginate_links(array(
-                    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                    'format' => '?paged=%#%',
-                    'current' => max(1, get_query_var('paged')),
-                    'total' => $custom_query->max_num_pages,
-                    'prev_text' =>"",
-                    'next_text' =>"",
-                    'class' => 'custom-pagination'
+                // Pagination
+                the_posts_pagination(array(
+                    'prev_text' => '',
+                    'next_text' => '',
+                    'before_page_number' => '',
+                    'after_page_number' => '',
+                    'screen_reader_text' => __('Pagination'),
                 ));
-                wp_reset_postdata(); // Reset the global $post object
             else :
                 echo '<p>Aucun article trouvé.</p>';
             endif;
