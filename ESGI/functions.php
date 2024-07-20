@@ -731,7 +731,7 @@ function esgi_comment( $comment, $args, $depth ) {
                             'add_below' => 'div-comment',
                             'depth'     => $depth,
                             'max_depth' => $args['max_depth'],
-                            'before'    => '<div class="reply-link">',
+                            'before'    => '<div class="reply-link"><i class="fa-solid fa-reply fa-sm" style="color: #050a3a;"></i>',
                             'after'     => '</div>'
                         )
                     )
