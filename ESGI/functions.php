@@ -4,6 +4,7 @@ add_action('wp_enqueue_scripts', 'esgi_enqueue_scripts');
 function esgi_enqueue_scripts() {
     wp_enqueue_script('menu-script', get_template_directory_uri() . '/assets/menu.js', array('jquery'), null, true);
     wp_enqueue_style('main', get_stylesheet_uri());
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
     wp_localize_script('menu-script', 'esgiIcons', [
         'menuOpen' => esgi_get_icon('menu_open'),
@@ -706,3 +707,38 @@ function save_esgi_contact_subtitle($post_id) {
     }
 }
 
+function esgi_comment( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment; ?>
+
+    <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+        <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+                <div class="comment-author vcard">
+                    <?php
+                    printf( '<b class="fn">%s</b>', get_comment_author_link() );
+                    ?>
+                </div><!-- .comment-author -->
+
+            <div class="comment-content">
+                <?php comment_text(); ?>
+            </div><!-- .comment-content -->
+
+            <div class="reply">
+                <?php
+                comment_reply_link(
+                    array_merge(
+                        $args,
+                        array(
+                            'add_below' => 'div-comment',
+                            'depth'     => $depth,
+                            'max_depth' => $args['max_depth'],
+                            'before'    => '<div class="reply-link">',
+                            'after'     => '</div>'
+                        )
+                    )
+                );
+                ?>
+            </div>
+        </article><!-- .comment-body -->
+    </li>
+    <?php
+}
