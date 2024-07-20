@@ -24,7 +24,7 @@ main {
 
 .featured-image{
     img{
-        margin-top: 160px;
+        margin-top: rem(160);
         display: block;
         width: 75%;
         margin-left: auto;
@@ -46,14 +46,14 @@ main {
     p {@include p20;}
     @include p20;
     color: var(--main-color); // Adjust color as needed
-    margin: 120px 160px;
+    margin: rem(120) rem(160);
     width: 50%;
 }
 
 h1{
     @include heading1;
     color: var(--main-color); // Adjust color as needed
-    margin-left: 160px;
+    margin-left: rem(160);
     width: 65%;
 }
 

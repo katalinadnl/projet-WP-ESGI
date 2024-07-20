@@ -3,10 +3,10 @@
         @include heading2;
         color: var(--main-color);
     }
-    margin: 78px 156px 234px 156px;
+    margin: rem(78) rem(156) rem(234) rem(156);
     display: flex;
     flex-direction: column ;
-    gap: 32px;
+    gap: rem(32);
     .partners-container {
         display: flex;
         flex-direction: row;
