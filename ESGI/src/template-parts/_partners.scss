@@ -9,15 +9,14 @@
     gap: rem(32);
     .partners-container {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: space-around;
         align-items: center;
     }
 
     @media (max-width: 1440px) {
         margin: rem(78) rem(40) rem(234) rem(40);
         .partners-container {
-            flex-direction: column;
             gap: rem(20);
             img {
                 margin-bottom: rem(32);
