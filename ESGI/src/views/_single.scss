@@ -12,12 +12,13 @@
             width: 100%;
             height: 100%;
             margin: 0;
+            display: block;
           }
         }
         .post-meta {
           display: flex;
           margin-top: rem(35);
-          .post-category {
+          .post-category, .post-date {
             font-weight: 800 !important;
             @include p20;
             a {
@@ -26,10 +27,7 @@
             }
           }
           .post-date {
-            color: var(--main-color);
-            font-weight: 800 !important;
             margin-left: rem(5);
-            @include p20;
           }
         }
         .post-content {
@@ -48,7 +46,6 @@
             margin: rem(3);
             padding: 0 rem(8);
             background-color: #F8F8F8;
-
           }
           a {
             font-size: rem(10.664);
@@ -92,28 +89,32 @@
             .comment-respond {
               margin-top: rem(100);
               .comment-form {
-                .comment-form-author {
+                .comment-form-author, .comment-comment {
                   padding: rem(10);
                   border: none;
                   border-bottom: rem(1) solid #ccc;
-                  input {
-                    font-family: "Mulish", sans-serif;
+                  input, textarea {
+                    font-family: $font;
                     font-size: rem(20);
                     border: none;
                     border-radius: 0;
                     padding: 0 rem(4);
+                    width: 100%;
+                    box-sizing: border-box;
                   }
                 }
-                .comment-comment {
-                  padding: rem(10);
-                  border: none;
-                  border-bottom: rem(1) solid #ccc;
-                  textarea {
-                    font-family: "Mulish", sans-serif;
-                    font-size: rem(20);
+                .form-submit {
+                  input {
+                    background-color: transparent;
+                    color: var(--main-color);
+                    padding: rem(10) rem(20);
                     border: none;
-                    border-radius: 0;
-                    padding: 0 rem(4);
+                    border-radius: rem(4);
+                    cursor: pointer;
+                    font-family: $font;
+                    font-size: rem(20);
+                    font-weight: 700;
+                    transition: background-color 0.3s ease;
                   }
                 }
               }
@@ -122,5 +123,67 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 1440px) {
+  .article-single-page .content-area .site-main {
+    margin: 0 rem(80);
+    .article-content {
+      width: rem(950);
+      margin-left: rem(40);
+    }
+  }
+  .post-comments {
+    margin-top: rem(80);
+  }
+}
+
+@media (max-width: 1150px) {
+  .article-single-page .content-area .site-main {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 rem(40);
+    .article-content {
+      width: 100%;
+      margin-left: 0;
+    }
+    .post-tags ul {
+      justify-content: center;
+    }
+  }
+  .post-comments {
+    margin-top: rem(60);
+  }
+}
+
+@media (max-width: 768px) {
+  .article-single-page .content-area .site-main {
+    margin: 0 rem(40);
+    .article-content {
+      width: 100%;
+    }
+    .post-tags ul {
+      justify-content: center;
+    }
+  }
+  .post-comments {
+    margin-top: rem(50);
+  }
+}
+
+@media (max-width: 480px) {
+  .article-single-page .content-area .site-main {
+    margin: 0 rem(20);
+    .article-content {
+      width: 100%;
+      margin-left: 0;
+    }
+    .post-tags ul {
+      justify-content: center;
+    }
+  }
+  .post-comments {
+    margin-top: rem(40);
   }
 }

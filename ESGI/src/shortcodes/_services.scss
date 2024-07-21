@@ -3,7 +3,20 @@
         @include heading2;
         color: var(--main-color);
         margin-left: rem(156);
+
+        @media (max-width: 1440px) {
+            margin-left: rem(80);
+        }
+
+        @media (max-width: 768px) {
+            margin-left: rem(40);
+        }
+
+        @media (max-width: 480px) {
+            margin-left: rem(20);
+        }
     }
+
 
     .custom-image-section {
         display: flex;
@@ -43,12 +56,16 @@
         }
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 480px) {
         .custom-image-section {
             flex-direction: column;
+
             .image-box {
                 flex: 1 1 auto;
                 max-width: none;
+                img {
+                    max-width: 100%;
+                }
             }
         }
     }

@@ -6,6 +6,13 @@
     width: 75%;
     gap: rem(80);
 
+    @media (max-width: 768px) {
+        margin-top: rem(80);
+    }
+
+    @media (max-width: 480px) {
+        margin-top: rem(40);
+    }
     .about-us{
         display: flex;
         gap: rem(160);
@@ -78,7 +85,7 @@
 
     img,
     .custom-informations {
-        width: 100%;
+        width: 70%;
         max-width: 100%;
     }
 
@@ -106,5 +113,18 @@
 
     .custom-informations {
         width: 90%;
+    }
+}
+
+#main-content.about-us {
+    .featured-image {
+        img {
+            @media (max-width: 768px) {
+                margin-top: rem(80);
+            }
+            @media (max-width: 480px) {
+                margin-top: rem(40);
+            }
+        }
     }
 }

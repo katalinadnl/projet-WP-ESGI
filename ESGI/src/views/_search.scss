@@ -42,5 +42,16 @@
             height: rem(114);
             @include p20;
         }
+        @media (max-width: 1440px) {
+            margin-left: rem(80);
+        }
+
+        @media (max-width: 768px) {
+            margin-left: rem(40);
+        }
+
+        @media (max-width: 480px) {
+            margin-left: rem(20);
+        }
     }
 }

@@ -9,8 +9,8 @@ $font: "Mulish", sans-serif;
 	font-weight: 600;
 
 	@media (max-width: 1440px) {
-		font-size: rem(72);
-		line-height: rem(90);
+		font-size: rem(70);
+		line-height: rem(88);
 	}
 
 	@media (max-width: 768px) {
@@ -19,8 +19,8 @@ $font: "Mulish", sans-serif;
 	}
 
 	@media (max-width: 480px) {
-		font-size: rem(48);
-		line-height: rem(60);
+		font-size: rem(50);
+		line-height: rem(62.5);
 	}
 }
 
@@ -100,18 +100,18 @@ $font: "Mulish", sans-serif;
 	font-weight: 700;
 
 	@media (max-width: 1440px) {
-		font-size: rem(23);
-		line-height: rem(28.75);
+		font-size: rem(24);
+		line-height: rem(30);
 	}
 
 	@media (max-width: 768px) {
-		font-size: rem(19);
-		line-height: rem(23.75);
+		font-size: rem(20);
+		line-height: rem(25);
 	}
 
 	@media (max-width: 480px) {
-		font-size: rem(15);
-		line-height: rem(18.75);
+		font-size: rem(16);
+		line-height: rem(20);
 	}
 }
 
@@ -138,12 +138,12 @@ $font: "Mulish", sans-serif;
 }
 
 @mixin p15 {
-    font-family: $font;
-    font-size: rem(15);
-    line-height: rem(19.53);
-    font-weight: 400;
+	font-family: $font;
+	font-size: rem(15);
+	line-height: rem(19.53);
+	font-weight: 400;
 
-    @media (max-width: 1440px) {
+	@media (max-width: 1440px) {
 		font-size: rem(13);
 		line-height: rem(16.25);
 	}
@@ -160,14 +160,14 @@ $font: "Mulish", sans-serif;
 }
 
 @mixin p20 {
-    font-family: $font;
-    font-size: rem(20);
-    line-height: rem(38);
-    & {
-        font-weight: 400;
-    }
+	font-family: $font;
+	font-size: rem(20);
+	line-height: rem(38);
+	& {
+		font-weight: 400;
+	}
 
-    @media (max-width: 1440px) {
+	@media (max-width: 1440px) {
 		font-size: rem(17);
 		line-height: rem(32.5);
 	}
@@ -184,12 +184,12 @@ $font: "Mulish", sans-serif;
 }
 
 @mixin p26 {
-    font-family: $font;
-    font-size: rem(26);
-    line-height: rem(42);
-    font-weight: 400;
+	font-family: $font;
+	font-size: rem(26);
+	line-height: rem(42);
+	font-weight: 400;
 
-    @media (max-width: 1440px) {
+	@media (max-width: 1440px) {
 		font-size: rem(22);
 		line-height: rem(35);
 	}

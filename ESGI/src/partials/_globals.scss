@@ -41,23 +41,59 @@ main {
     }
 }
 
-.esgi-h2-description{
-    @include heading2;
-    p {@include p20;}
-    @include p20;
-    color: var(--main-color); // Adjust color as needed
+.wp-block-group.esgi-h2-description {
     margin: rem(120) rem(160);
-    width: 50%;
+    margin-right: 0;
+
+    h2 {
+        @include heading2;
+    }
+
+    p {
+        @include p26;
+        color: var(--text-color);
+        width: 50%;
+    }
+
+    @media (max-width: 1440px) {
+        margin: rem(120) rem(80);
+        p {
+            font-size: rem(22);
+        }
+    }
+
+    @media (max-width: 768px) {
+        margin: rem(120) rem(40);
+        p {
+            font-size: rem(18);
+            width: 100%;
+        }
+    }
 }
 
-h1{
+h1 {
     @include heading1;
-    color: var(--main-color); // Adjust color as needed
-    margin-left: rem(160);
+    color: var(--main-color);
     width: 65%;
+    margin-left: rem(156);
+
+    @media (max-width: 1440px) {
+        margin-left: rem(80);
+    }
+
+    @media (max-width: 768px) {
+        margin-left: rem(40);
+    }
+
+    @media (max-width: 480px) {
+        margin-left: rem(20);
+    }
+
 }
 
-
+img {
+    object-fit: cover;
+}
 
 @media (max-width: 768px) {
 
