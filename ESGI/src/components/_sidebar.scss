@@ -71,3 +71,9 @@ ul.wp-block-archives-list.wp-block-archives li:before, .wp-block-categories-list
         color: var(--grey);
     }
 }
+
+@media (max-width: 600px) {
+    aside#secondary {
+        width: 22.375rem;
+    }
+}
