@@ -31,7 +31,6 @@ services:
       - WORDPRESS_DB_USER=esgiuser
       - WORDPRESS_DB_PASSWORD=esgipass
       - WORDPRESS_DB_NAME=esgi
-    command: sass ./ESGI/src/main.scss ./ESGI/style.css
   adminer:
     image: adminer
     restart: always
