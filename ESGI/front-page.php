@@ -3,10 +3,8 @@ get_header(); ?>
 
 <main id="main-content">
 
-    <!-- title -->
     <h1><?php the_title(); ?></h1>
 
-    <!-- featured image -->
     <div class="featured-image">
         <?php if (has_post_thumbnail()) {
             the_post_thumbnail();

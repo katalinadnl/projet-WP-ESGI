@@ -11,9 +11,9 @@
     $page_description = get_post_meta($about_us_page->ID, '_custom_page_description', true);
     $page_slogan = get_post_meta($about_us_page->ID, '_custom_page_slogan', true);
 
-    // Modify the slogan if it is displayed on the home page
+
     if (is_front_page()) {
-        $about_us_page = get_page_by_path('about-us'); // Make sure your about us page slug is 'about-us'
+        $about_us_page = get_page_by_path('about-us');
         if ($about_us_page) {
             $page_slogan = get_post_meta($about_us_page->ID, '_hp_about_us_title', true);
         }

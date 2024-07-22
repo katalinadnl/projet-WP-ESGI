@@ -41,7 +41,7 @@ if ( post_password_required() ) {
                 )
             );
             ?>
-        </ul><!-- .comment-list -->
+        </ul>
 
         <?php the_comments_navigation(); ?>
 
@@ -73,4 +73,4 @@ if ( post_password_required() ) {
     );
     ?>
 
-</div><!-- .comments-area -->
+</div>

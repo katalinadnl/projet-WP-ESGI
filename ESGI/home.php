@@ -18,7 +18,6 @@ get_header(); ?>
                 get_sidebar();
             }
 
-            // Custom query to fetch blog posts
             if (have_posts()) : ?>
                 <div class="articles-container">
                     <div class="articles">
@@ -32,7 +31,6 @@ get_header(); ?>
                                             the_post_thumbnail('thumbnail', ['class' => 'featured-image']);
                                         }
 
-                                        // Display the categories
                                         $categories = get_the_category();
                                         if (!empty($categories)) {
                                             echo '<span class="post-category">' . esc_html($categories[0]->name) . '</span>';
@@ -40,11 +38,11 @@ get_header(); ?>
                                         ?>
                                     </div>
                                     <?php the_title('<h4 class="entry-title"><a href="' . esc_url(get_permalink()) . '">', '</a></h4>'); ?>
-                                </header><!-- .entry-header -->
+                                </header>
                                 <div class="entry-content">
                                     <?php the_excerpt(); ?>
-                                </div><!-- .entry-content -->
-                            </article><!-- #post-## -->
+                                </div>
+                            </article>
                         <?php endwhile; ?>
                     </div>
                     <div class="pagination">

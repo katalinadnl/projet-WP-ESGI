@@ -31,7 +31,7 @@ function esgi_register_nav_menu()
     ]);
 }
 
-// Ajout de supports au thème
+// add support for custom logo and post thumbnails
 add_action('after_setup_theme', 'esgi_theme_setup');
 function esgi_theme_setup()
 {
@@ -275,7 +275,7 @@ function esgi_customize_register($wp_customize) {
         'priority' => 30,
     ) );
 
-    // Ajout d'un nouveau parametre (has_sidebar)
+    // Add setting for sidebar visibility
     $wp_customize->add_setting('has_sidebar', [
         'type' => 'theme_mod',
         'capability' => 'edit_theme_options',
@@ -286,7 +286,7 @@ function esgi_customize_register($wp_customize) {
         'sanitize_js_callback' => '',
     ]);
 
-    // Ajout d'un controle
+    // Add control for sidebar visibility
     $wp_customize->add_control('has_sidebar', [
         'type' => 'checkbox',
         'priority' => 20,
@@ -325,7 +325,7 @@ function esgi_customize_register($wp_customize) {
 
 }
 
-// Récupère les urls des logos des partenaires depuis les réglages du Customizer.
+// Add customizer styles
 function esgi_get_partners()
 {
     $partners = array();
@@ -738,7 +738,7 @@ function esgi_comment( $comment, $args, $depth ) {
                 );
                 ?>
             </div>
-        </article><!-- .comment-body -->
+        </article>
     </li>
     <?php
 }
